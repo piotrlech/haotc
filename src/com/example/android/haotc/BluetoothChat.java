@@ -20,7 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.example.android.BluetoothChat.R;
+import com.example.android.haotc.R;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;

@@ -18,7 +18,7 @@ package com.example.android.haotc;
 
 import java.util.Set;
 
-import com.example.android.BluetoothChat.R;
+import com.example.android.haotc.R;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
