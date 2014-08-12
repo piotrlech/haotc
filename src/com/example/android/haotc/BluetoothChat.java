@@ -185,7 +185,7 @@ public class BluetoothChat extends Activity {
 				}
                 String formattedTime = onFormatted + "," + offFormatted;
                 Log.v(TAG, formattedTime);
-                sendMessage("*12,8,3," + onMessage + "#");
+                sendMessage("*12,8,3," + formattedTime + "#");
             }
         });
 
