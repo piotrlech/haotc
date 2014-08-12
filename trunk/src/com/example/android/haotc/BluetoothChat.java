@@ -16,6 +16,10 @@
 
 package com.example.android.haotc;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.example.android.BluetoothChat.R;
 
 import android.app.Activity;
@@ -162,8 +166,25 @@ public class BluetoothChat extends Activity {
                 // Send a message using content of the edit text widget
                 TextView onButton = (TextView) findViewById(R.id.button6on);
                 String onMessage = onButton.getText().toString();
-                TextView offButton = (TextView) findViewById(R.id.button6on);
+                TextView offButton = (TextView) findViewById(R.id.button6off);
                 String offMessage = offButton.getText().toString();
+                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+                Date onDate = null;
+                Date offDate = null;
+                String onFormatted = "-1:-1";
+                String offFormatted = "-1:-1";
+                try {
+                	onDate = (Date)formatter.parse(onMessage);
+                	onFormatted = formatter.format(onDate);
+				} catch (ParseException e) {
+				}
+                try {
+                	offDate = (Date)formatter.parse(offMessage);
+                	offFormatted = formatter.format(offDate);
+				} catch (ParseException e) {
+				}
+                String formattedTime = onFormatted + "," + offFormatted;
+                Log.v(TAG, formattedTime);
                 sendMessage("*12,8,3," + onMessage + "#");
             }
         });
