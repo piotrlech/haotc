@@ -160,9 +160,11 @@ public class BluetoothChat extends Activity {
         mSendButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Send a message using content of the edit text widget
-                TextView view = (TextView) findViewById(R.id.button6on);
-                String message = view.getText().toString();
-                sendMessage("*12,8,3," + message + "#");
+                TextView onButton = (TextView) findViewById(R.id.button6on);
+                String onMessage = onButton.getText().toString();
+                TextView offButton = (TextView) findViewById(R.id.button6on);
+                String offMessage = offButton.getText().toString();
+                sendMessage("*12,8,3," + onMessage + "#");
             }
         });
 
