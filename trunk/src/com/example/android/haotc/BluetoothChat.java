@@ -365,6 +365,9 @@ public class BluetoothChat extends Activity {
                     mTitle.setText(R.string.title_connected_to);
                     mTitle.append(mConnectedDeviceName);
                     mConversationArrayAdapter.clear();
+                    String message = "Just connected";
+                    byte[] send = message.getBytes();
+                    mChatService.write(send);
                     break;
                 case BluetoothChatService.STATE_CONNECTING:
                     mTitle.setText(R.string.title_connecting);
