@@ -193,14 +193,11 @@ public class BluetoothChat extends Activity {
         mButton1 = (ToggleButton) findViewById(R.id.toggleButton1);
         mButton1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                //TextView view = (TextView) findViewById(R.id.edit_text_out);
-                // message = view.getText().toString();
             	boolean isOn = ((ToggleButton) v).isChecked();
             	if(isOn)
-            		sendMessage("*10,13,3#");
+            		sendMessage("*10,1,3#");
             	else
-            		sendMessage("*10,13,2#");
+            		sendMessage("*10,1,2#");
             }
         });
 
@@ -208,14 +205,11 @@ public class BluetoothChat extends Activity {
         mButton1 = (ToggleButton) findViewById(R.id.toggleButton2);
         mButton1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                //TextView view = (TextView) findViewById(R.id.edit_text_out);
-                // message = view.getText().toString();
             	boolean isOn = ((ToggleButton) v).isChecked();
             	if(isOn)
-            		sendMessage("*10,12,3#");
+            		sendMessage("*10,2,3#");
             	else
-            		sendMessage("*10,12,2#");
+            		sendMessage("*10,2,2#");
             }
         });
 
@@ -223,14 +217,11 @@ public class BluetoothChat extends Activity {
         mButton1 = (ToggleButton) findViewById(R.id.toggleButton3);
         mButton1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                //TextView view = (TextView) findViewById(R.id.edit_text_out);
-                // message = view.getText().toString();
             	boolean isOn = ((ToggleButton) v).isChecked();
             	if(isOn)
-            		sendMessage("*10,11,3#");
+            		sendMessage("*10,3,3#");
             	else
-            		sendMessage("*10,11,2#");
+            		sendMessage("*10,3,2#");
             }
         });
 
@@ -238,14 +229,11 @@ public class BluetoothChat extends Activity {
         mButton1 = (ToggleButton) findViewById(R.id.toggleButton4);
         mButton1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                //TextView view = (TextView) findViewById(R.id.edit_text_out);
-                // message = view.getText().toString();
             	boolean isOn = ((ToggleButton) v).isChecked();
             	if(isOn)
-            		sendMessage("*10,10,3#");
+            		sendMessage("*10,4,3#");
             	else
-            		sendMessage("*10,10,2#");
+            		sendMessage("*10,4,2#");
             }
         });
 
@@ -253,14 +241,11 @@ public class BluetoothChat extends Activity {
         mButton1 = (ToggleButton) findViewById(R.id.toggleButton5);
         mButton1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                //TextView view = (TextView) findViewById(R.id.edit_text_out);
-                // message = view.getText().toString();
             	boolean isOn = ((ToggleButton) v).isChecked();
             	if(isOn)
-            		sendMessage("*10,9,3#");
+            		sendMessage("*10,5,3#");
             	else
-            		sendMessage("*10,9,2#");
+            		sendMessage("*10,5,2#");
             }
         });
 
@@ -268,14 +253,11 @@ public class BluetoothChat extends Activity {
         mButton1 = (ToggleButton) findViewById(R.id.toggleButton6);
         mButton1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                //TextView view = (TextView) findViewById(R.id.edit_text_out);
-                // message = view.getText().toString();
             	boolean isOn = ((ToggleButton) v).isChecked();
             	if(isOn)
-            		sendMessage("*10,8,3#");
+            		sendMessage("*10,6,3#");
             	else
-            		sendMessage("*10,8,2#");
+            		sendMessage("*10,6,2#");
             }
         });
 
