@@ -71,7 +71,7 @@ public class BluetoothChat extends Activity {
 
     // Layout Views
     private TextView mTitle;
-    private ListView mConversationView;
+    //private ListView mConversationView;
     private EditText mOutEditText;
     private Button mSendButton;
     private ToggleButton mButton1;
@@ -79,7 +79,7 @@ public class BluetoothChat extends Activity {
     // Name of the connected device
     private String mConnectedDeviceName = null;
     // Array adapter for the conversation thread
-    private ArrayAdapter<String> mConversationArrayAdapter;
+    //private ArrayAdapter<String> mConversationArrayAdapter;
     // String buffer for outgoing messages
     private StringBuffer mOutStringBuffer;
     // Local Bluetooth adapter
@@ -151,13 +151,13 @@ public class BluetoothChat extends Activity {
         Log.d(TAG, "setupChat()");
 
         // Initialize the array adapter for the conversation thread
-        mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
-        mConversationView = (ListView) findViewById(R.id.in);
-        mConversationView.setAdapter(mConversationArrayAdapter);
+        //mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
+        //mConversationView = (ListView) findViewById(R.id.in);
+        //mConversationView.setAdapter(mConversationArrayAdapter);
 
         // Initialize the compose field with a listener for the return key
-        mOutEditText = (EditText) findViewById(R.id.edit_text_out);
-        mOutEditText.setOnEditorActionListener(mWriteListener);
+        //todo - mOutEditText = (EditText) findViewById(R.id.edit_text_out);
+        //todo - mOutEditText.setOnEditorActionListener(mWriteListener);
 
         // Initialize the send button with a listener that for click events
         mSendButton = (Button) findViewById(R.id.button_send);
@@ -339,7 +339,7 @@ public class BluetoothChat extends Activity {
         }
     }
 
-    // The action listener for the EditText widget, to listen for the return key
+    /*/ The action listener for the EditText widget, to listen for the return key
     private TextView.OnEditorActionListener mWriteListener =
         new TextView.OnEditorActionListener() {
         public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
@@ -351,7 +351,7 @@ public class BluetoothChat extends Activity {
             if(D) Log.i(TAG, "END onEditorAction");
             return true;
         }
-    };
+    };*/
 
     // The Handler that gets information back from the BluetoothChatService
     private final Handler mHandler = new Handler() {
@@ -364,7 +364,7 @@ public class BluetoothChat extends Activity {
                 case BluetoothChatService.STATE_CONNECTED:
                     mTitle.setText(R.string.title_connected_to);
                     mTitle.append(mConnectedDeviceName);
-                    mConversationArrayAdapter.clear();
+                    //mConversationArrayAdapter.clear();
                     String message = "Just connected";
                     byte[] send = message.getBytes();
                     mChatService.write(send);
@@ -382,13 +382,13 @@ public class BluetoothChat extends Activity {
                 byte[] writeBuf = (byte[]) msg.obj;
                 // construct a string from the buffer
                 String writeMessage = new String(writeBuf);
-                mConversationArrayAdapter.add("Me:  " + writeMessage);
+                //mConversationArrayAdapter.add("Me:  " + writeMessage);
                 break;
             case MESSAGE_READ:
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
+                //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name

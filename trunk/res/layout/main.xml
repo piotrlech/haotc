@@ -26,61 +26,143 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-
 	    <ToggleButton
 	        android:id="@+id/toggleButton1"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+	        android:layout_height="match_parent"
 	        android:text="@string/pierwszy" />
-	
-	    <ToggleButton
-	        android:id="@+id/toggleButton2"
+	    <EditText
+	        android:id="@+id/button1on"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/drugi" />
-
-	    <ToggleButton
-	        android:id="@+id/toggleButton3"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	    <EditText
+	        android:id="@+id/button1off"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/trzeci" />
-
-	    <ToggleButton
-	        android:id="@+id/toggleButton4"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/czwarty" />
-
-	    <ToggleButton
-	        android:id="@+id/toggleButton5"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/piaty" />
-
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
 	</LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-        
+	    <ToggleButton
+	        android:id="@+id/toggleButton2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:text="@string/drugi" />
+	    <EditText
+	        android:id="@+id/button2on"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	    <EditText
+	        android:id="@+id/button2off"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+	    <ToggleButton
+	        android:id="@+id/toggleButton3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:text="@string/trzeci" />
+	    <EditText
+	        android:id="@+id/button3on"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	    <EditText
+	        android:id="@+id/button3off"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+	    <ToggleButton
+	        android:id="@+id/toggleButton4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:text="@string/czwarty" />
+	    <EditText
+	        android:id="@+id/button4on"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	    <EditText
+	        android:id="@+id/button4off"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	</LinearLayout>
+
+	<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+	    <ToggleButton
+	        android:id="@+id/toggleButton5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:text="@string/piaty" />
+	    <EditText
+	        android:id="@+id/button5on"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	    <EditText
+	        android:id="@+id/button5off"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10"
+	        android:inputType="time" />
+	</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 	    <ToggleButton
 	        android:id="@+id/toggleButton6"
 	        android:layout_width="wrap_content"
 	        android:layout_height="match_parent"
 	        android:text="@string/szosty" />
-
 	    <EditText
 	        android:id="@+id/button6on"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:ems="10"
-	        android:inputType="time" >
-
-	        <requestFocus />
-	    </EditText>
-
+	        android:inputType="time" />
 	    <EditText
 	        android:id="@+id/button6off"
 	        android:layout_width="wrap_content"
@@ -88,35 +170,25 @@
 	        android:layout_weight="1"
 	        android:ems="10"
 	        android:inputType="time" />
-
 	</LinearLayout>
-
-    <ListView
-        android:id="@+id/in"
-        android:layout_width="wrap_content"
-        android:layout_height="0dip"
-        android:layout_weight="1.38"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+	    <ToggleButton
+	        android:id="@+id/toggleButton7"
+			android:visibility="invisible"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:text="@string/szosty" />
 
-        <EditText
-            android:id="@+id/edit_text_out"
-            android:inputType="text"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1" />
+	    <Button
+	        android:id="@+id/button_send"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/send" />
 
-        <Button
-            android:id="@+id/button_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send" />
     </LinearLayout>
 
 </LinearLayout>
