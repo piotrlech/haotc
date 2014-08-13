@@ -191,4 +191,38 @@
 
     </LinearLayout>
 
+<!--
+Crap
+-->
+    <ListView
+        android:id="@+id/in"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="1.38"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/edit_text_out"
+            android:visibility="gone"
+            android:inputType="text"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1" />
+<!-- 
+        <Button
+            android:id="@+id/button_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send" />
+-->
+    </LinearLayout>
+
 </LinearLayout>
