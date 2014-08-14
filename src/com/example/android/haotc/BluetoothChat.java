@@ -72,7 +72,7 @@ public class BluetoothChat extends Activity {
     // Layout Views
     private TextView mTitle;
     private ListView mConversationView;
-    private EditText mOutEditText;
+    //private EditText mOutEditText;
     private Button mSendButton;
     private ToggleButton mButton1;
 
@@ -156,13 +156,21 @@ public class BluetoothChat extends Activity {
         mConversationView.setAdapter(mConversationArrayAdapter);
 
         // Initialize the compose field with a listener for the return key
-        mOutEditText = (EditText) findViewById(R.id.edit_text_out);
-        mOutEditText.setOnEditorActionListener(mWriteListener);
+        //mOutEditText = (EditText) findViewById(R.id.edit_text_out);
+        //mOutEditText.setOnEditorActionListener(mWriteListener);
 
         // Initialize the send button with a listener that for click events
         mSendButton = (Button) findViewById(R.id.button_send);
         mSendButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
+                String message = "*12,0,0,0#";
+                Log.v(TAG, message);
+                sendMessage(message);
+                sendTriggers(1, R.id.button1on, R.id.button1off);
+                sendTriggers(2, R.id.button2on, R.id.button2off);
+                sendTriggers(3, R.id.button3on, R.id.button3off);
+                sendTriggers(4, R.id.button4on, R.id.button4off);
+                sendTriggers(5, R.id.button5on, R.id.button5off);
                 sendTriggers(6, R.id.button6on, R.id.button6off);
                 // Send a message using content of the edit text widget
                 /*TextView onButton = (TextView) findViewById(R.id.button6on);
@@ -276,7 +284,7 @@ public class BluetoothChat extends Activity {
         try {
         	Date mDate = (Date)formatter.parse(sTime);
         	String sFormatted = formatter.format(mDate);
-            String message = "*12," + buttonNr + ",3" + sFormatted + "#";
+            String message = "*12," + buttonNr + ",3," + sFormatted + "#";
             Log.v(TAG, message);
             sendMessage(message);
 		} catch (ParseException e) {
@@ -286,7 +294,7 @@ public class BluetoothChat extends Activity {
         try {
         	Date mDate = (Date)formatter.parse(sTime);
         	String sFormatted = formatter.format(mDate);
-            String message = "*12," + buttonNr + ",2" + sFormatted + "#";
+            String message = "*12," + buttonNr + ",2," + sFormatted + "#";
             Log.v(TAG, message);
             sendMessage(message);
 		} catch (ParseException e) {
@@ -342,7 +350,7 @@ public class BluetoothChat extends Activity {
 
             // Reset out string buffer to zero and clear the edit text field
             mOutStringBuffer.setLength(0);
-            mOutEditText.setText(mOutStringBuffer);
+            //mOutEditText.setText(mOutStringBuffer);
         }
     }
 

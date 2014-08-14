@@ -191,9 +191,6 @@
 
     </LinearLayout>
 
-<!--
-Optional
--->
     <ListView
         android:id="@+id/in"
         android:layout_width="wrap_content"
@@ -202,6 +199,7 @@ Optional
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll" />
 
+<!-- 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -217,5 +215,5 @@ Optional
             android:layout_weight="1" />
 
     </LinearLayout>
-
+-->
 </LinearLayout>
