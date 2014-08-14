@@ -192,11 +192,10 @@
     </LinearLayout>
 
 <!--
-Crap
+Optional
 -->
     <ListView
         android:id="@+id/in"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="0dip"
         android:layout_weight="1.38"
@@ -216,13 +215,7 @@ Crap
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1" />
-<!-- 
-        <Button
-            android:id="@+id/button_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send" />
--->
+
     </LinearLayout>
 
 </LinearLayout>

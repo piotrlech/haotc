@@ -163,8 +163,9 @@ public class BluetoothChat extends Activity {
         mSendButton = (Button) findViewById(R.id.button_send);
         mSendButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
+                sendTriggers(6, R.id.button6on, R.id.button6off);
                 // Send a message using content of the edit text widget
-                TextView onButton = (TextView) findViewById(R.id.button6on);
+                /*TextView onButton = (TextView) findViewById(R.id.button6on);
                 String onMessage = onButton.getText().toString();
                 TextView offButton = (TextView) findViewById(R.id.button6off);
                 String offMessage = offButton.getText().toString();
@@ -185,7 +186,7 @@ public class BluetoothChat extends Activity {
 				}
                 String formattedTime = onFormatted + "," + offFormatted;
                 Log.v(TAG, formattedTime);
-                sendMessage("*12,8,3," + formattedTime + "#");
+                sendMessage("*12,8,3," + formattedTime + "#");*/
             }
         });
 
@@ -268,6 +269,30 @@ public class BluetoothChat extends Activity {
         mOutStringBuffer = new StringBuffer("");
     }
 
+    private void sendTriggers(int buttonNr, int buttonOn, int buttonOff) {
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        TextView tvButton = (TextView) findViewById(buttonOn);
+        String sTime = tvButton.getText().toString();
+        try {
+        	Date mDate = (Date)formatter.parse(sTime);
+        	String sFormatted = formatter.format(mDate);
+            String message = "*12," + buttonNr + ",3" + sFormatted + "#";
+            Log.v(TAG, message);
+            sendMessage(message);
+		} catch (ParseException e) {
+		}
+        tvButton = (TextView) findViewById(buttonOff);
+        sTime = tvButton.getText().toString();
+        try {
+        	Date mDate = (Date)formatter.parse(sTime);
+        	String sFormatted = formatter.format(mDate);
+            String message = "*12," + buttonNr + ",2" + sFormatted + "#";
+            Log.v(TAG, message);
+            sendMessage(message);
+		} catch (ParseException e) {
+		}
+    }
+        
     @Override
     public synchronized void onPause() {
         super.onPause();
