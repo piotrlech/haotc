@@ -1,0 +1,17 @@
+#summary How to assemble the modules together.
+
+= List of materials =
+
+  * Arduino - 50 PLN
+  * Real Time Clock DS1307 - 10 PLN
+  * 433MHz Transmitter - 9 PLN
+  * Bluetooth HC05 - 27 PLN
+-----------------------------------
+  * TOTAL - 96 PLN (32 USD)
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
