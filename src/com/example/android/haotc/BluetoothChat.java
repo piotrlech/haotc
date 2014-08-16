@@ -75,6 +75,7 @@ public class BluetoothChat extends Activity {
     //private EditText mOutEditText;
     private Button mSendButton;
     private ToggleButton mButton1;
+    private String readMessageBuffer;
 
     // Name of the connected device
     private String mConnectedDeviceName = null;
@@ -397,13 +398,19 @@ public class BluetoothChat extends Activity {
                 byte[] writeBuf = (byte[]) msg.obj;
                 // construct a string from the buffer
                 String writeMessage = new String(writeBuf);
-                mConversationArrayAdapter.add("Me:  " + writeMessage);
+                //mConversationArrayAdapter.add("Me:  " + writeMessage);
                 break;
             case MESSAGE_READ:
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
+                byte c = readBuf[msg.arg1];
+                //readMessageBuffer = "-" + msg.arg1 + "-";
+                //for (int i = 0; i < msg.arg1; i++)
+                // 	readMessageBuffer = readMessageBuffer + readBuf[i] + "|";
+                //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
+                //Log.v(TAG, "***" + readMessage + "***" + readMessageBuffer + "***");
+                mConversationArrayAdapter.add(readMessage);
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name

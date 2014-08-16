@@ -29,6 +29,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 
 /**
@@ -390,16 +391,22 @@ public class BluetoothChatService {
             Log.i(TAG, "BEGIN mConnectedThread");
             byte[] buffer = new byte[1024];
             int bytes;
+            int availableBytes;
 
             // Keep listening to the InputStream while connected
             while (true) {
                 try {
-                    // Read from the InputStream
-                    bytes = mmInStream.read(buffer);
-
-                    // Send the obtained bytes to the UI Activity
-                    mHandler.obtainMessage(BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
-                            .sendToTarget();
+                    availableBytes = mmInStream.available();
+                    if(availableBytes > 0) {
+	                    // Read from the InputStream
+	                    bytes = mmInStream.read(buffer);
+	                    if (bytes > 0) {
+		                    // Send the obtained bytes to the UI Activity
+		                    mHandler.obtainMessage(BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
+		                            .sendToTarget();
+	                    }
+                    }
+                    else SystemClock.sleep(100);
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
