@@ -40,7 +40,6 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,7 +75,7 @@ public class BluetoothChat extends Activity {
     private Button mReadButton;
     private Button mSendButton;
     private ToggleButton mButton1;
-    private String readMessageBuffer;
+    private String readMessageBuffer = "";
 
     // Name of the connected device
     private String mConnectedDeviceName = null;
@@ -402,13 +401,23 @@ public class BluetoothChat extends Activity {
                 // 	readMessageBuffer = readMessageBuffer + readBuf[i] + "|";
                 //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
                 //Log.v(TAG, "***" + readMessage + "***" + readMessageBuffer + "***");
-                mConversationArrayAdapter.add(readMessage);
-                if(readMessage.length() > 0) {
-                	String[] parts = readMessage.split(",:");
-                	if(parts != null && parts.length > 1) {
-                		Log.d(TAG, "---" + parts[0] + "---" + parts[1] + "---"); 
-                	}
+                if(readMessage.contains("\n")) {
+                	int nLineAt = readMessage.indexOf("\n");
+                    Log.d(TAG,"***" + nLineAt + "***" + readMessage.substring(0, Math.max(0, nLineAt-1)) + "***");
+                	readMessageBuffer = readMessageBuffer + readMessage.substring(0, Math.max(0, nLineAt-1));
+                    Log.d(TAG,"===" + readMessageBuffer + "===");
+                    if(readMessageBuffer.length() > 0) {
+                    	String[] parts = readMessageBuffer.split(",|:");
+                    	if(parts != null && parts.length > 1) {
+                    		String outcome = "--" + readMessageBuffer + "--";
+                    		for(int i = 0; i < parts.length; i++)
+                    			outcome = outcome + parts[i] + "++";
+                    		Log.d(TAG, outcome); 
+                    	}
+                    }
+                    readMessageBuffer = readMessageBuffer.substring(Math.min(nLineAt, readMessageBuffer.length()));
                 }
+                mConversationArrayAdapter.add(readMessage);
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name
