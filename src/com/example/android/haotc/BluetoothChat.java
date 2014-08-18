@@ -73,6 +73,7 @@ public class BluetoothChat extends Activity {
     private TextView mTitle;
     private ListView mConversationView;
     //private EditText mOutEditText;
+    private Button mReadButton;
     private Button mSendButton;
     private ToggleButton mButton1;
     private String readMessageBuffer;
@@ -165,7 +166,7 @@ public class BluetoothChat extends Activity {
         mSendButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 String message = "*12,0,0,0#";
-                Log.v(TAG, message);
+                Log.d(TAG, message);
                 sendMessage(message);
                 sendTriggers(1, R.id.button1on, R.id.button1off);
                 sendTriggers(2, R.id.button2on, R.id.button2off);
@@ -173,29 +174,20 @@ public class BluetoothChat extends Activity {
                 sendTriggers(4, R.id.button4on, R.id.button4off);
                 sendTriggers(5, R.id.button5on, R.id.button5off);
                 sendTriggers(6, R.id.button6on, R.id.button6off);
-                // Send a message using content of the edit text widget
-                /*TextView onButton = (TextView) findViewById(R.id.button6on);
-                String onMessage = onButton.getText().toString();
-                TextView offButton = (TextView) findViewById(R.id.button6off);
-                String offMessage = offButton.getText().toString();
-                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-                Date onDate = null;
-                Date offDate = null;
-                String onFormatted = "-1:-1";
-                String offFormatted = "-1:-1";
-                try {
-                	onDate = (Date)formatter.parse(onMessage);
-                	onFormatted = formatter.format(onDate);
-				} catch (ParseException e) {
-				}
-                try {
-                	offDate = (Date)formatter.parse(offMessage);
-                	offFormatted = formatter.format(offDate);
-				} catch (ParseException e) {
-				}
-                String formattedTime = onFormatted + "," + offFormatted;
-                Log.v(TAG, formattedTime);
-                sendMessage("*12,8,3," + formattedTime + "#");*/
+            }
+        });
+
+        mReadButton = (Button) findViewById(R.id.button_read);
+        mReadButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                SimpleDateFormat formatter = new SimpleDateFormat("HH,mm,ss");
+            	//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            	Date date = new Date();
+            	//System.out.println(formatter.format(date));
+                String message = "*11," + formatter.format(date) + "#";
+                Log.d(TAG, message);
+                sendMessage(message);
+                //sendTriggers(1, R.id.button1on, R.id.button1off);
             }
         });
 
@@ -404,13 +396,19 @@ public class BluetoothChat extends Activity {
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                byte c = readBuf[msg.arg1];
+                //byte c = readBuf[msg.arg1];
                 //readMessageBuffer = "-" + msg.arg1 + "-";
                 //for (int i = 0; i < msg.arg1; i++)
                 // 	readMessageBuffer = readMessageBuffer + readBuf[i] + "|";
                 //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
                 //Log.v(TAG, "***" + readMessage + "***" + readMessageBuffer + "***");
                 mConversationArrayAdapter.add(readMessage);
+                if(readMessage.length() > 0) {
+                	String[] parts = readMessage.split(",:");
+                	if(parts != null && parts.length > 1) {
+                		Log.d(TAG, "---" + parts[0] + "---" + parts[1] + "---"); 
+                	}
+                }
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name
