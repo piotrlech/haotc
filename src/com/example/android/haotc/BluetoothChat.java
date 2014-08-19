@@ -396,28 +396,6 @@ public class BluetoothChat extends Activity {
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                //byte c = readBuf[msg.arg1];
-                //readMessageBuffer = "-" + msg.arg1 + "-";
-                //for (int i = 0; i < msg.arg1; i++)
-                // 	readMessageBuffer = readMessageBuffer + readBuf[i] + "|";
-                //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
-                //Log.v(TAG, "***" + readMessage + "***" + readMessageBuffer + "***");
-                /*if(readMessage.contains("\n")) {
-                	int nLineAt = readMessage.indexOf("\n");
-                    Log.d(TAG,"***" + nLineAt + "***" + readMessage.substring(0, Math.max(0, nLineAt-1)) + "***");
-                	readMessageBuffer = readMessageBuffer + readMessage.substring(0, Math.max(0, nLineAt-1));
-                    Log.d(TAG,"===" + readMessageBuffer + "===");
-                    if(readMessageBuffer.length() > 0) {
-                    	String[] parts = readMessageBuffer.split(",|:");
-                    	if(parts != null && parts.length > 1) {
-                    		String outcome = "--" + readMessageBuffer + "--";
-                    		for(int i = 0; i < parts.length; i++)
-                    			outcome = outcome + parts[i] + "++";
-                    		Log.d(TAG, outcome); 
-                    	}
-                    }
-                    readMessageBuffer = readMessageBuffer.substring(Math.min(nLineAt, readMessageBuffer.length()));
-                }*/
         		readMessageBuffer = readMessageBuffer + readMessage;
                 while(readMessageBuffer.contains("\n")) {
         			//System.out.println("readMessageBuffer 1--" + readMessageBuffer + "--1");
@@ -435,43 +413,73 @@ public class BluetoothChat extends Activity {
                     		if(parts[0].equals("Schedule")) {
                     			int nButton = Integer.parseInt(parts[1]);
                             	TextView tvButton;
-                            	int h1 = Integer.parseInt(parts[2]);
-                            	int m1 = Integer.parseInt(parts[3]);
-                            	int h2 = Integer.parseInt(parts[4]);
-                            	int m2 = Integer.parseInt(parts[5]);
+                            	int h1 = Integer.parseInt(parts[2].trim());
+                            	int m1 = Integer.parseInt(parts[3].trim());
+                            	int h2 = Integer.parseInt(parts[4].trim());
+                            	int m2 = Integer.parseInt(parts[5].trim());
+                            	String sTimeOn = "";
+                            	String sTimeOff = "";
                             	if(h1 >= 0 && h1 <=23 && m1 >=0 && m1 <=59 && h2 >= 0 && h2 <=23 && m2 >=0 && m2 <=59) {
-	                            	String sTimeOn  = String.format("%02d", h1) + ":" + String.format("%02d", m1);
-	                            	String sTimeOff = String.format("%02d", h2) + ":" + String.format("%02d", m2);
-	                    			switch (nButton) {
-	                    			case 4:
-	                                    tvButton = (TextView) findViewById(R.id.button4on);
-	                                    tvButton.setText(sTimeOn);
-	                                    tvButton = (TextView) findViewById(R.id.button4off);
-	                                    tvButton.setText(sTimeOff);
-	                                    break;
-	                    			case 5:
-	                                    tvButton = (TextView) findViewById(R.id.button5on);
-	                                    tvButton.setText(sTimeOn);
-	                                    tvButton = (TextView) findViewById(R.id.button5off);
-	                                    tvButton.setText(sTimeOff);
-	                                    break;
-	                    			case 6:
-	                                    tvButton = (TextView) findViewById(R.id.button6on);
-	                                    tvButton.setText(sTimeOn);
-	                                    tvButton = (TextView) findViewById(R.id.button6off);
-	                                    tvButton.setText(sTimeOff);
-	                                    break;
-	                    			}
+	                            	sTimeOn  = String.format("%02d", h1) + ":" + String.format("%02d", m1);
+	                            	sTimeOff = String.format("%02d", h2) + ":" + String.format("%02d", m2);
+                            	}
+                    			switch (nButton) {
+                    			case 1:
+                                    tvButton = (TextView) findViewById(R.id.button1on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button1off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 2:
+                                    tvButton = (TextView) findViewById(R.id.button2on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button2off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 3:
+                                    tvButton = (TextView) findViewById(R.id.button3on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button3off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 4:
+                                    tvButton = (TextView) findViewById(R.id.button4on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button4off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 5:
+                                    tvButton = (TextView) findViewById(R.id.button5on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button5off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 6:
+                                    tvButton = (TextView) findViewById(R.id.button6on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button6off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
                     			}
                     		}
+
+                    		if(parts[0].equals("Status")) {
+                    			ToggleButton tButton;
+                            	for(int i = 0; i < Math.min(6, parts.length+1); i++) {
+                            		int s = Integer.parseInt(parts[i+1].trim());
+                            		switch (i) {
+                            		case 5:
+                                        tButton = (ToggleButton) findViewById(R.id.toggleButton6);
+                                        tButton.setChecked(s == 1);
+                            			break;
+                            		}
+                            	}
+                    		}
+                    		
                     	}
-                        //ToggleButton tButton = (ToggleButton) findViewById(R.id.toggleButton6);
-                        //tButton.setChecked(true);
                     }
         			String sLine = readMessageBuffer.substring(Math.min(nLineAt+1, readMessageBuffer.length()));
-        			//System.out.println("2nd line = " + sLine);
         			readMessageBuffer = sLine;
-        			//System.out.println("readMessageBuffer 2--" + readMessageBuffer + "--2");
         		}
                 mConversationArrayAdapter.add(readMessage);
                 break;
