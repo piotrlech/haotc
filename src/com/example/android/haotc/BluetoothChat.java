@@ -401,7 +401,7 @@ public class BluetoothChat extends Activity {
                 // 	readMessageBuffer = readMessageBuffer + readBuf[i] + "|";
                 //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
                 //Log.v(TAG, "***" + readMessage + "***" + readMessageBuffer + "***");
-                if(readMessage.contains("\n")) {
+                /*if(readMessage.contains("\n")) {
                 	int nLineAt = readMessage.indexOf("\n");
                     Log.d(TAG,"***" + nLineAt + "***" + readMessage.substring(0, Math.max(0, nLineAt-1)) + "***");
                 	readMessageBuffer = readMessageBuffer + readMessage.substring(0, Math.max(0, nLineAt-1));
@@ -416,7 +416,28 @@ public class BluetoothChat extends Activity {
                     	}
                     }
                     readMessageBuffer = readMessageBuffer.substring(Math.min(nLineAt, readMessageBuffer.length()));
-                }
+                }*/
+        		readMessageBuffer = readMessageBuffer + readMessage;
+                while(readMessageBuffer.contains("\n")) {
+        			//System.out.println("readMessageBuffer 1--" + readMessageBuffer + "--1");
+        			int nLineAt = readMessageBuffer.indexOf("\n");
+        			//System.out.println("nLineAt = " + nLineAt);
+        			String fLine = readMessageBuffer.substring(0, Math.max(0, nLineAt-1));
+        			Log.w(TAG, "SEND IT OUT = " + fLine);
+                    if(fLine.length() > 0) {
+                    	String[] parts = fLine.split(",|:");
+                    	if(parts != null && parts.length > 1) {
+                    		String outcome = "--" + fLine + "--";
+                    		for(int i = 0; i < parts.length; i++)
+                    			outcome = outcome + parts[i] + "++";
+                    		Log.d(TAG, outcome); 
+                    	}
+                    }
+        			String sLine = readMessageBuffer.substring(Math.min(nLineAt+1, readMessageBuffer.length()));
+        			//System.out.println("2nd line = " + sLine);
+        			readMessageBuffer = sLine;
+        			//System.out.println("readMessageBuffer 2--" + readMessageBuffer + "--2");
+        		}
                 mConversationArrayAdapter.add(readMessage);
                 break;
             case MESSAGE_DEVICE_NAME:
