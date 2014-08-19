@@ -16,6 +16,7 @@
 
 package com.example.android.haotc;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -423,19 +424,49 @@ public class BluetoothChat extends Activity {
         			int nLineAt = readMessageBuffer.indexOf("\n");
         			//System.out.println("nLineAt = " + nLineAt);
         			String fLine = readMessageBuffer.substring(0, Math.max(0, nLineAt-1));
-        			Log.w(TAG, "SEND IT OUT = " + fLine);
+        			//Log.w(TAG, "SEND IT OUT = " + fLine);
                     if(fLine.length() > 0) {
-                    	String[] parts = fLine.split(",|:");
+                    	String[] parts = fLine.split(",|:|#");
                     	if(parts != null && parts.length > 1) {
                     		String outcome = "--" + fLine + "--";
                     		for(int i = 0; i < parts.length; i++)
                     			outcome = outcome + parts[i] + "++";
-                    		Log.d(TAG, outcome); 
+                    		Log.w(TAG, outcome);
+                    		if(parts[0].equals("Schedule")) {
+                    			int nButton = Integer.parseInt(parts[1]);
+                            	TextView tvButton;
+                            	int h1 = Integer.parseInt(parts[2]);
+                            	int m1 = Integer.parseInt(parts[3]);
+                            	int h2 = Integer.parseInt(parts[4]);
+                            	int m2 = Integer.parseInt(parts[5]);
+                            	if(h1 >= 0 && h1 <=23 && m1 >=0 && m1 <=59 && h2 >= 0 && h2 <=23 && m2 >=0 && m2 <=59) {
+	                            	String sTimeOn  = String.format("%02d", h1) + ":" + String.format("%02d", m1);
+	                            	String sTimeOff = String.format("%02d", h2) + ":" + String.format("%02d", m2);
+	                    			switch (nButton) {
+	                    			case 4:
+	                                    tvButton = (TextView) findViewById(R.id.button4on);
+	                                    tvButton.setText(sTimeOn);
+	                                    tvButton = (TextView) findViewById(R.id.button4off);
+	                                    tvButton.setText(sTimeOff);
+	                                    break;
+	                    			case 5:
+	                                    tvButton = (TextView) findViewById(R.id.button5on);
+	                                    tvButton.setText(sTimeOn);
+	                                    tvButton = (TextView) findViewById(R.id.button5off);
+	                                    tvButton.setText(sTimeOff);
+	                                    break;
+	                    			case 6:
+	                                    tvButton = (TextView) findViewById(R.id.button6on);
+	                                    tvButton.setText(sTimeOn);
+	                                    tvButton = (TextView) findViewById(R.id.button6off);
+	                                    tvButton.setText(sTimeOff);
+	                                    break;
+	                    			}
+                    			}
+                    		}
                     	}
-                        ToggleButton tButton = (ToggleButton) findViewById(R.id.toggleButton6);
-                        tButton.setChecked(true);
-                        TextView tvButton = (TextView) findViewById(R.id.button6on);
-                        tvButton.setText("22:22");
+                        //ToggleButton tButton = (ToggleButton) findViewById(R.id.toggleButton6);
+                        //tButton.setChecked(true);
                     }
         			String sLine = readMessageBuffer.substring(Math.min(nLineAt+1, readMessageBuffer.length()));
         			//System.out.println("2nd line = " + sLine);
