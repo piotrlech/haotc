@@ -17,10 +17,10 @@
 #define START_CMD_CHAR '*'
 #define END_CMD_CHAR '#'
 #define DIV_CMD_CHAR '|'
-#define CMD_DIGITALWRITE 10
+#define CMD_TURN_IT_ON_OFF 10
 #define CMD_READ_STATUS 11
-#define CMD_TEXT 12
-#define CMD_READ_ARDUDROID 13
+#define CMD_SEND_TRIGGERS 12
+#define CMD_SET_TIME 13
 #define MAX_COMMAND 20  // max command number code. used for error checking.
 #define MIN_COMMAND 10  // minimum command number code. used for error checking. 
 #define IN_STRING_LENGHT 40
@@ -79,23 +79,30 @@ void loop()
   pin_num = Serial.parseInt(); // read the pin
   pin_value = Serial.parseInt();  // read the value
 
-  // 1) GET TEXT COMMAND FROM ARDUDROID
-  if (ard_command == CMD_TEXT){   
+  // 1) Set up the triggers
+  if (ard_command == CMD_SEND_TRIGGERS){   
     inText = ""; //clears variable for new input
     eeprom_addr = 0;
     while (Serial.available())  {
       char c = Serial.read();  //gets one byte from serial buffer
       Alarm.delay(5);
       if (c == END_CMD_CHAR) { // if the complete string has been read
-        digitalClockDisplay();
         if (pin_num == 0 && pin_value == 0) {
+          Serial.println("Disabling alarms");
           for (int i = 0; i < 24; i++) {
             EEPROM.write(i, 255);
-            Alarm.disable(i);
+            Alarm.free(i);
           }
         }
-        else {
+        else if (pin_num == 0 && pin_value == 1) {
+          Serial.print("Enabling alarms at ");
+          digitalClockDisplay();
           setUpAlarms();
+        }
+        else {
+          String sDisp = "pin_num = ";
+          sDisp = sDisp + pin_num + ", pin_value = " + pin_value;
+          Serial.println(sDisp);
         }
         break;
       }              
@@ -118,8 +125,8 @@ void loop()
     }
   }
 
-  // 2) GET digitalWrite DATA FROM ARDUDROID
-  if (ard_command == CMD_DIGITALWRITE){  
+  // 2) Turn a switch on or off
+  if (ard_command == CMD_TURN_IT_ON_OFF){  
     if (pin_value == PIN_LOW)
 	  pin_value = LOW;
     else if (pin_value == PIN_HIGH)
@@ -134,7 +141,7 @@ void loop()
     return;  // return from start of loop()
   }
 
-  // 3) GET analogWrite DATA FROM ARDUDROID
+  // 3) Read the Arduino status
   if (ard_command == CMD_READ_STATUS) {  
     // analogWrite(  pin_num, pin_value );
     int timeout = 50;
@@ -149,25 +156,15 @@ void loop()
     for(int i = 0; i < 6; i++) {
       sOut = "Schedule:";
       sOut = sOut + (i+1) + ":";
-      //Serial.print(i+1);
-      //Serial.print(":");
       eeprom_addr = 4 * i;
       sOut = sOut + EEPROM.read(eeprom_addr++) + ",";
       sOut = sOut + EEPROM.read(eeprom_addr++) + ",";
       sOut = sOut + EEPROM.read(eeprom_addr++) + ",";
       sOut = sOut + EEPROM.read(eeprom_addr++) + "#";
-      //Serial.print(EEPROM.read(eeprom_addr++));
-      //Serial.print(",");
-      //Serial.print(EEPROM.read(eeprom_addr++));
-      //Serial.print(",");
-      //Serial.print(EEPROM.read(eeprom_addr++));
-      //Serial.print(",");
-      //Serial.print(EEPROM.read(eeprom_addr++));
       Serial.println(sOut);
       Alarm.delay(timeout);
     }
-    //Serial.println();
-    //Alarm.delay(timeout);
+    Alarm.delay(timeout);
     sOut = "Status: ";
     for(int i = 101; i <= 106; i++) {
       sOut = sOut + EEPROM.read(i) + ",";
@@ -178,12 +175,30 @@ void loop()
     return;  // Done. return to loop();
   }
 
-  // 4) SEND DATA TO ARDUDROID
-  if (ard_command == CMD_READ_ARDUDROID) { 
+  // 4) Set Arduino time
+  if (ard_command == CMD_SET_TIME) { 
     // char send_to_android[] = "Place your text here." ;
     // Serial.println(send_to_android);   // Example: Sending text
-    Serial.print(" Analog 0 = "); 
-    Serial.println(analogRead(A0));  // Example: Read and send Analog pin value to Arduino
+    int y = pin_num;
+    int mo= pin_value;
+    int d = Serial.parseInt();
+    int h = Serial.parseInt();
+    int m = Serial.parseInt();
+    int s = Serial.parseInt();
+    String sDebug = "Time set to ";
+    sDebug = sDebug + y + "." + mo + "." + d + " " + h + ":" + m + ":" + s;
+    //Serial.println(sDebug);
+    tmElements_t tm;
+    
+    tm.Year = CalendarYrToTm(2000+y);
+    tm.Month = mo;
+    tm.Day = d;
+    tm.Hour = h;
+    tm.Minute = m;
+    tm.Second = s;
+    if (RTC.write(tm)) {
+      Serial.println(sDebug);
+    }
     return;  // Done. return to loop();
   }
 }
@@ -246,23 +261,27 @@ void setUpAlarms()
       switch (i+1) {
       case 1:
         Alarm.alarmRepeat(h, m, 0, onAlarm1);
+        Alarm.alarmRepeat(h, m, 1, onAlarm1);
         break;
       case 2:
         Alarm.alarmRepeat(h, m, 0, onAlarm2);
+        Alarm.alarmRepeat(h, m, 1, onAlarm2);
         break;
       case 3:
         Alarm.alarmRepeat(h, m, 0, onAlarm3);
+        Alarm.alarmRepeat(h, m, 1, onAlarm3);
         break;
       case 4:
         Alarm.alarmRepeat(h, m, 0, onAlarm4);
+        Alarm.alarmRepeat(h, m, 1, onAlarm4);
         break;
       case 5:
         Alarm.alarmRepeat(h, m, 0, onAlarm5);
-        //Serial.print("(alarm on)");
+        Alarm.alarmRepeat(h, m, 1, onAlarm5);
         break;
       case 6:
         Alarm.alarmRepeat(h, m, 0, onAlarm6);
-        //Serial.print("(alarm on)");
+        Alarm.alarmRepeat(h, m, 1, onAlarm6);
         break;
       }
     }
@@ -273,23 +292,31 @@ void setUpAlarms()
       switch (i+1) {
       case 1:
         Alarm.alarmRepeat(h, m, 0, offAlarm1);
+        Alarm.alarmRepeat(h, m, 1, offAlarm1);
         break;
       case 2:
         Alarm.alarmRepeat(h, m, 0, offAlarm2);
+        Alarm.alarmRepeat(h, m, 1, offAlarm2);
         break;
       case 3:
         Alarm.alarmRepeat(h, m, 0, offAlarm3);
+        Alarm.alarmRepeat(h, m, 1, offAlarm3);
         break;
       case 4:
         Alarm.alarmRepeat(h, m, 0, offAlarm4);
+        Alarm.alarmRepeat(h, m, 1, offAlarm4);
         break;
       case 5:
         Alarm.alarmRepeat(h, m, 0, offAlarm5);
+        Alarm.alarmRepeat(h, m, 1, offAlarm5);
         //Serial.print("(alarm off)");
         break;
       case 6:
         Alarm.alarmRepeat(h, m, 0, offAlarm6);
-        //Serial.print("(alarm off)");
+        int iRes = Alarm.alarmRepeat(h, m, 1, offAlarm6);
+        String sRes = "iRes = ";
+        sRes = sRes + iRes;
+        Serial.println(sRes);
         break;
       }
     }
