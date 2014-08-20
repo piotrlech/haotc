@@ -18,7 +18,7 @@
 #define END_CMD_CHAR '#'
 #define DIV_CMD_CHAR '|'
 #define CMD_DIGITALWRITE 10
-#define CMD_SET_TIME 11
+#define CMD_READ_STATUS 11
 #define CMD_TEXT 12
 #define CMD_READ_ARDUDROID 13
 #define MAX_COMMAND 20  // max command number code. used for error checking.
@@ -27,7 +27,7 @@
 #define MAX_ANALOGWRITE 255
 #define PIN_HIGH 3
 #define PIN_LOW 2
-#define MY_GROUP "00001"
+#define MY_GROUP "00000"
 
 String inText;
 RCSwitch mySwitch = RCSwitch();
@@ -40,7 +40,7 @@ tmElements_t tm;
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("haotc 0.01 Alpha by P.Lechowicz (2014)");
+  Serial.println("haotc 0.02 alpha by P.Lechowicz (2014)");
   setSyncProvider(RTC.get);   // the function to get the time from the RTC
   if(timeStatus()!= timeSet) 
      Serial.println("Unable to sync with the RTC");
@@ -135,13 +135,46 @@ void loop()
   }
 
   // 3) GET analogWrite DATA FROM ARDUDROID
-  if (ard_command == CMD_SET_TIME) {  
+  if (ard_command == CMD_READ_STATUS) {  
     // analogWrite(  pin_num, pin_value );
-	int sec = Serial.parseInt();
-    Serial.print("Android time");
-	printDigits(pin_num);
-	printDigits(pin_value);
-	printDigits(sec);
+    int timeout = 50;
+    int sec = Serial.parseInt();
+	String sOut;
+    sOut = "Time:";
+	sOut = sOut + pin_num + ",";
+    sOut = sOut + pin_value + ",";
+    sOut = sOut + sec;
+    Serial.println(sOut);
+    Alarm.delay(timeout);
+    for(int i = 0; i < 6; i++) {
+      sOut = "Schedule:";
+      sOut = sOut + (i+1) + ":";
+      //Serial.print(i+1);
+      //Serial.print(":");
+      eeprom_addr = 4 * i;
+      sOut = sOut + EEPROM.read(eeprom_addr++) + ",";
+      sOut = sOut + EEPROM.read(eeprom_addr++) + ",";
+      sOut = sOut + EEPROM.read(eeprom_addr++) + ",";
+      sOut = sOut + EEPROM.read(eeprom_addr++) + "#";
+      //Serial.print(EEPROM.read(eeprom_addr++));
+      //Serial.print(",");
+      //Serial.print(EEPROM.read(eeprom_addr++));
+      //Serial.print(",");
+      //Serial.print(EEPROM.read(eeprom_addr++));
+      //Serial.print(",");
+      //Serial.print(EEPROM.read(eeprom_addr++));
+      Serial.println(sOut);
+      Alarm.delay(timeout);
+    }
+    //Serial.println();
+    //Alarm.delay(timeout);
+    sOut = "Status: ";
+    for(int i = 101; i <= 106; i++) {
+      sOut = sOut + EEPROM.read(i) + ",";
+      //Serial.print(",");
+    }
+    Serial.println(sOut);
+    Alarm.delay(timeout);
     return;  // Done. return to loop();
   }
 
@@ -158,6 +191,50 @@ void loop()
 void setUpAlarms()
 {
   for(int i = 0; i < 6; i++) {
+    if(EEPROM.read(101+i) == HIGH) {
+      switch (i+1) {
+      case 1:
+        mySwitch.switchOn(MY_GROUP, "10000");
+        break;
+      case 2:
+        mySwitch.switchOn(MY_GROUP, "01000");
+        break;
+      case 3:
+        mySwitch.switchOn(MY_GROUP, "00100");
+        break;
+      case 4:
+        mySwitch.switchOn(MY_GROUP, "00010");
+        break;
+      case 5:
+        mySwitch.switchOn(MY_GROUP, "00001");
+        break;
+      case 6:
+        mySwitch.switchOn(MY_GROUP, "00011");
+        break;
+      }
+    } else {
+      switch (i+1) {
+      case 1:
+        mySwitch.switchOff(MY_GROUP, "10000");
+        break;
+      case 2:
+        mySwitch.switchOff(MY_GROUP, "01000");
+        break;
+      case 3:
+        mySwitch.switchOff(MY_GROUP, "00100");
+        break;
+      case 4:
+        mySwitch.switchOff(MY_GROUP, "00010");
+        break;
+      case 5:
+        mySwitch.switchOff(MY_GROUP, "00001");
+        break;
+      case 6:
+        mySwitch.switchOff(MY_GROUP, "00011");
+        break;
+      }
+    }
+
     eeprom_addr = 4 * i;
     //Serial.print(i+1);
     //Serial.print(" --> ");
@@ -223,34 +300,42 @@ void setUpAlarms()
 
 void onAlarm1(){
   mySwitch.switchOn(MY_GROUP, "10000");
+  EEPROM.write(101, HIGH);
 }
 
 void offAlarm1(){
   mySwitch.switchOff(MY_GROUP, "10000");
+  EEPROM.write(101, LOW);
 }
 
 void onAlarm2(){
   mySwitch.switchOn(MY_GROUP, "01000");
+  EEPROM.write(102, LOW);
 }
 
 void offAlarm2(){
   mySwitch.switchOff(MY_GROUP, "01000");
+  EEPROM.write(102, LOW);
 }
 
 void onAlarm3(){
   mySwitch.switchOn(MY_GROUP, "00100");
+  EEPROM.write(103, HIGH);
 }
 
 void offAlarm3(){
   mySwitch.switchOff(MY_GROUP, "00100");
+  EEPROM.write(103, LOW);
 }
 
 void onAlarm4(){
   mySwitch.switchOn(MY_GROUP, "00010");
+  EEPROM.write(104, HIGH);
 }
 
 void offAlarm4(){
   mySwitch.switchOff(MY_GROUP, "00010");
+  EEPROM.write(104, LOW);
 }
 
 void onAlarm5(){
@@ -258,6 +343,7 @@ void onAlarm5(){
   Serial.println("Alarm#5: - turn it on");           
   Serial.flush();
   mySwitch.switchOn(MY_GROUP, "00001");
+  EEPROM.write(105, HIGH);
 }
 
 void offAlarm5(){
@@ -265,6 +351,7 @@ void offAlarm5(){
   Serial.println("Alarm#5: - turn it off");
   Serial.flush();
   mySwitch.switchOff(MY_GROUP, "00001");
+  EEPROM.write(105, LOW);
 }
 
 void onAlarm6(){
@@ -272,6 +359,7 @@ void onAlarm6(){
   Serial.println("Alarm#6: - turn it on");           
   Serial.flush();
   mySwitch.switchOn(MY_GROUP, "00011");
+  EEPROM.write(106, HIGH);
 }
 
 void offAlarm6(){
@@ -279,6 +367,7 @@ void offAlarm6(){
   Serial.println("Alarm#6: - turn it off");           
   Serial.flush();
   mySwitch.switchOff(MY_GROUP, "00011");
+  EEPROM.write(106, LOW);
 }
 
 // 2a) select the requested pin# for DigitalWrite action
@@ -288,88 +377,94 @@ void set_digitalwrite(int pin_num, int pin_value)
     
   switch (pin_num) {
   case 13:
-    pinMode(13, OUTPUT);  // #1
-    digitalWrite(13, pin_value);
+    //pinMode(13, OUTPUT);  // #1
+    //digitalWrite(13, pin_value);
+    EEPROM.write(101, pin_value);
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "10000");
     else
       mySwitch.switchOff(MY_GROUP, "10000");
     break;
   case 12:
-    pinMode(12, OUTPUT);  // #2
-    digitalWrite(12, pin_value);   
+    //pinMode(12, OUTPUT);  // #2
+    //digitalWrite(12, pin_value);   
+    EEPROM.write(102, pin_value);
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "01000");
     else
       mySwitch.switchOff(MY_GROUP, "01000");
     break;
   case 11:
-    pinMode(11, OUTPUT);  // #3
-    digitalWrite(11, pin_value);         
+    //pinMode(11, OUTPUT);  // #3
+    //digitalWrite(11, pin_value);         
+    EEPROM.write(103, pin_value);
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "00100");
     else
       mySwitch.switchOff(MY_GROUP, "00100");
     break;
   case 10:
-    pinMode(10, OUTPUT);  // #4
-    digitalWrite(10, pin_value);         
+    //pinMode(10, OUTPUT);  // #4
+    //digitalWrite(10, pin_value);         
+    EEPROM.write(104, pin_value);
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "00010");
     else
       mySwitch.switchOff(MY_GROUP, "00010");
     break;
   case 9:
-    pinMode(9, OUTPUT);  // #5
-    digitalWrite(9, pin_value);         
+    //pinMode(9, OUTPUT);  // #5
+    //digitalWrite(9, pin_value);         
+    EEPROM.write(105, pin_value);
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "00001");
     else
       mySwitch.switchOff(MY_GROUP, "00001");
     break;
   case 8:
-    pinMode(8, OUTPUT);  // #6
-    digitalWrite(8, pin_value);         
+    //pinMode(8, OUTPUT);  // #6
+    //digitalWrite(8, pin_value);         
+    EEPROM.write(106, pin_value);
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "00011");
     else
       mySwitch.switchOff(MY_GROUP, "00011");
     break;
   case 7:
-    pinMode(7, OUTPUT);  // #7
-    digitalWrite(7, pin_value);         
+    //pinMode(7, OUTPUT);  // #7
+    //digitalWrite(7, pin_value);         
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "00101");
     else
       mySwitch.switchOff(MY_GROUP, "00101");
     break;
   case 6:
-    pinMode(6, OUTPUT);  // #8
-    digitalWrite(6, pin_value);         
+    //pinMode(6, OUTPUT);  // #8
+    //digitalWrite(6, pin_value);         
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "00110");
     else
       mySwitch.switchOff(MY_GROUP, "00110");
     break;
   case 5:
-    pinMode(5, OUTPUT);  // #9
-    digitalWrite(5, pin_value); 
+    //pinMode(5, OUTPUT);  // #9
+    //digitalWrite(5, pin_value); 
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "00111");
     else
       mySwitch.switchOff(MY_GROUP, "00111");
     break;
   case 4:
-    pinMode(4, OUTPUT);  // #10
-    digitalWrite(4, pin_value);         
+    //pinMode(4, OUTPUT);  // #10
+    //digitalWrite(4, pin_value);         
     if(pin_value == HIGH)
       mySwitch.switchOn(MY_GROUP, "01001");
     else
       mySwitch.switchOff(MY_GROUP, "01001");
     break;
   case 3:
-    pinMode(3, OUTPUT);  // #11
-    digitalWrite(3, pin_value);         
+    //pinMode(3, OUTPUT);  // #11
+    //digitalWrite(3, pin_value);         
     if (RTC.read(tm)) {
       Serial.print("Ok, Time = ");
       print2digits(tm.Hour);
@@ -387,8 +482,8 @@ void set_digitalwrite(int pin_num, int pin_value)
     } 
     break;
   case 2:
-    pinMode(2, OUTPUT);  // #12
-    digitalWrite(2, pin_value); 
+    //pinMode(2, OUTPUT);  // #12
+    //digitalWrite(2, pin_value); 
     // add your code here       
     break;      
     // default: 
