@@ -255,7 +255,7 @@ public class BluetoothChat extends Activity {
                 Date mDate = new Date();
             	String sFormatted = formatter.format(mDate);
                 String message;
-                message = "*12,0,0,0###";
+                message = "*12,0,0,0#";
                 sendMessage(message);
                 sendTriggers(1, R.id.button1on, R.id.button1off);
                 sendTriggers(2, R.id.button2on, R.id.button2off);
@@ -263,11 +263,11 @@ public class BluetoothChat extends Activity {
                 sendTriggers(4, R.id.button4on, R.id.button4off);
                 sendTriggers(5, R.id.button5on, R.id.button5off);
                 sendTriggers(6, R.id.button6on, R.id.button6off);
-                message = "*12,0,1###";
+                message = "*12,0,1#";
                 sendMessage(message);
                 Log.w(TAG, message);
                 SystemClock.sleep(200);
-                message = "*13," + sFormatted + "###";
+                message = "*13," + sFormatted + "#";
                 sendMessage(message);
             }
         });
