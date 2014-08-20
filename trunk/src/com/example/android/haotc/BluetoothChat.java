@@ -250,8 +250,13 @@ public class BluetoothChat extends Activity {
         mSendButton = (Button) findViewById(R.id.button_send);
         mSendButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                String message = "*12,0,0,0#";
-                Log.d(TAG, message);
+                SimpleDateFormat formatter = new SimpleDateFormat("yy.MM.dd HH:mm:ss");
+                Date mDate = new Date();
+            	String sFormatted = formatter.format(mDate);
+                String message = "*13," + sFormatted + "#";
+                Log.v(TAG, message);
+                sendMessage(message);
+                message = "*12,0,0,0#";
                 sendMessage(message);
                 sendTriggers(1, R.id.button1on, R.id.button1off);
                 sendTriggers(2, R.id.button2on, R.id.button2off);
