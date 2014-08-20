@@ -310,7 +310,7 @@ void offAlarm1(){
 
 void onAlarm2(){
   mySwitch.switchOn(MY_GROUP, "01000");
-  EEPROM.write(102, LOW);
+  EEPROM.write(102, HIGH);
 }
 
 void offAlarm2(){
