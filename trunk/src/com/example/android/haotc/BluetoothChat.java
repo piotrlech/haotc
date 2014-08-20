@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -253,10 +254,8 @@ public class BluetoothChat extends Activity {
                 SimpleDateFormat formatter = new SimpleDateFormat("yy.MM.dd HH:mm:ss");
                 Date mDate = new Date();
             	String sFormatted = formatter.format(mDate);
-                String message = "*13," + sFormatted + "#";
-                Log.v(TAG, message);
-                sendMessage(message);
-                message = "*12,0,0,0#";
+                String message;
+                message = "*12,0,0,0###";
                 sendMessage(message);
                 sendTriggers(1, R.id.button1on, R.id.button1off);
                 sendTriggers(2, R.id.button2on, R.id.button2off);
@@ -264,6 +263,12 @@ public class BluetoothChat extends Activity {
                 sendTriggers(4, R.id.button4on, R.id.button4off);
                 sendTriggers(5, R.id.button5on, R.id.button5off);
                 sendTriggers(6, R.id.button6on, R.id.button6off);
+                message = "*12,0,1###";
+                sendMessage(message);
+                Log.w(TAG, message);
+                SystemClock.sleep(200);
+                message = "*13," + sFormatted + "###";
+                sendMessage(message);
             }
         });
 
@@ -282,7 +287,7 @@ public class BluetoothChat extends Activity {
         	Date mDate = (Date)formatter.parse(sTime);
         	String sFormatted = formatter.format(mDate);
             String message = "*12," + buttonNr + ",3," + sFormatted + "#";
-            Log.v(TAG, message);
+            Log.i(TAG, message);
             sendMessage(message);
 		} catch (ParseException e) {
 		}
@@ -296,6 +301,7 @@ public class BluetoothChat extends Activity {
             sendMessage(message);
 		} catch (ParseException e) {
 		}
+        SystemClock.sleep(200);
     }
         
     @Override
@@ -413,7 +419,7 @@ public class BluetoothChat extends Activity {
                     		String outcome = "--" + fLine + "--";
                     		for(int i = 0; i < parts.length; i++)
                     			outcome = outcome + parts[i] + "++";
-                    		Log.w(TAG, outcome);
+                    		Log.i(TAG, outcome);
                     		if(parts[0].equals("Schedule")) {
                     			try {
 	                    			int nButton = Integer.parseInt(parts[1]);
