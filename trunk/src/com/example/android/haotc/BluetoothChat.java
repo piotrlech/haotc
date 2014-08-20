@@ -16,6 +16,7 @@
 
 package com.example.android.haotc;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,7 +41,6 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,9 +73,10 @@ public class BluetoothChat extends Activity {
     private TextView mTitle;
     private ListView mConversationView;
     //private EditText mOutEditText;
+    private Button mReadButton;
     private Button mSendButton;
     private ToggleButton mButton1;
-    private String readMessageBuffer;
+    private String readMessageBuffer = "";
 
     // Name of the connected device
     private String mConnectedDeviceName = null;
@@ -156,49 +157,6 @@ public class BluetoothChat extends Activity {
         mConversationView = (ListView) findViewById(R.id.in);
         mConversationView.setAdapter(mConversationArrayAdapter);
 
-        // Initialize the compose field with a listener for the return key
-        //mOutEditText = (EditText) findViewById(R.id.edit_text_out);
-        //mOutEditText.setOnEditorActionListener(mWriteListener);
-
-        // Initialize the send button with a listener that for click events
-        mSendButton = (Button) findViewById(R.id.button_send);
-        mSendButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                String message = "*12,0,0,0#";
-                Log.v(TAG, message);
-                sendMessage(message);
-                sendTriggers(1, R.id.button1on, R.id.button1off);
-                sendTriggers(2, R.id.button2on, R.id.button2off);
-                sendTriggers(3, R.id.button3on, R.id.button3off);
-                sendTriggers(4, R.id.button4on, R.id.button4off);
-                sendTriggers(5, R.id.button5on, R.id.button5off);
-                sendTriggers(6, R.id.button6on, R.id.button6off);
-                // Send a message using content of the edit text widget
-                /*TextView onButton = (TextView) findViewById(R.id.button6on);
-                String onMessage = onButton.getText().toString();
-                TextView offButton = (TextView) findViewById(R.id.button6off);
-                String offMessage = offButton.getText().toString();
-                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-                Date onDate = null;
-                Date offDate = null;
-                String onFormatted = "-1:-1";
-                String offFormatted = "-1:-1";
-                try {
-                	onDate = (Date)formatter.parse(onMessage);
-                	onFormatted = formatter.format(onDate);
-				} catch (ParseException e) {
-				}
-                try {
-                	offDate = (Date)formatter.parse(offMessage);
-                	offFormatted = formatter.format(offDate);
-				} catch (ParseException e) {
-				}
-                String formattedTime = onFormatted + "," + offFormatted;
-                Log.v(TAG, formattedTime);
-                sendMessage("*12,8,3," + formattedTime + "#");*/
-            }
-        });
-
         // Initialize the send button with a listener that for click events
         mButton1 = (ToggleButton) findViewById(R.id.toggleButton1);
         mButton1.setOnClickListener(new OnClickListener() {
@@ -268,6 +226,40 @@ public class BluetoothChat extends Activity {
             		sendMessage("*10,6,3#");
             	else
             		sendMessage("*10,6,2#");
+            }
+        });
+
+        mReadButton = (Button) findViewById(R.id.button_read);
+        mReadButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                SimpleDateFormat formatter = new SimpleDateFormat("HH,mm,ss");
+            	//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            	Date date = new Date();
+            	//System.out.println(formatter.format(date));
+                String message = "*11," + formatter.format(date) + "#";
+                Log.d(TAG, message);
+                sendMessage(message);
+                //sendTriggers(1, R.id.button1on, R.id.button1off);
+            }
+        });
+
+        // Initialize the compose field with a listener for the return key
+        //mOutEditText = (EditText) findViewById(R.id.edit_text_out);
+        //mOutEditText.setOnEditorActionListener(mWriteListener);
+
+        // Initialize the send button with a listener that for click events
+        mSendButton = (Button) findViewById(R.id.button_send);
+        mSendButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                String message = "*12,0,0,0#";
+                Log.d(TAG, message);
+                sendMessage(message);
+                sendTriggers(1, R.id.button1on, R.id.button1off);
+                sendTriggers(2, R.id.button2on, R.id.button2off);
+                sendTriggers(3, R.id.button3on, R.id.button3off);
+                sendTriggers(4, R.id.button4on, R.id.button4off);
+                sendTriggers(5, R.id.button5on, R.id.button5off);
+                sendTriggers(6, R.id.button6on, R.id.button6off);
             }
         });
 
@@ -404,12 +396,91 @@ public class BluetoothChat extends Activity {
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                byte c = readBuf[msg.arg1];
-                //readMessageBuffer = "-" + msg.arg1 + "-";
-                //for (int i = 0; i < msg.arg1; i++)
-                // 	readMessageBuffer = readMessageBuffer + readBuf[i] + "|";
-                //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
-                //Log.v(TAG, "***" + readMessage + "***" + readMessageBuffer + "***");
+        		readMessageBuffer = readMessageBuffer + readMessage;
+                while(readMessageBuffer.contains("\n")) {
+        			//System.out.println("readMessageBuffer 1--" + readMessageBuffer + "--1");
+        			int nLineAt = readMessageBuffer.indexOf("\n");
+        			//System.out.println("nLineAt = " + nLineAt);
+        			String fLine = readMessageBuffer.substring(0, Math.max(0, nLineAt-1));
+        			//Log.w(TAG, "SEND IT OUT = " + fLine);
+                    if(fLine.length() > 0) {
+                    	String[] parts = fLine.split(",|:|#");
+                    	if(parts != null && parts.length > 1) {
+                    		String outcome = "--" + fLine + "--";
+                    		for(int i = 0; i < parts.length; i++)
+                    			outcome = outcome + parts[i] + "++";
+                    		Log.w(TAG, outcome);
+                    		if(parts[0].equals("Schedule")) {
+                    			int nButton = Integer.parseInt(parts[1]);
+                            	TextView tvButton;
+                            	int h1 = Integer.parseInt(parts[2].trim());
+                            	int m1 = Integer.parseInt(parts[3].trim());
+                            	int h2 = Integer.parseInt(parts[4].trim());
+                            	int m2 = Integer.parseInt(parts[5].trim());
+                            	String sTimeOn = "";
+                            	String sTimeOff = "";
+                            	if(h1 >= 0 && h1 <=23 && m1 >=0 && m1 <=59 && h2 >= 0 && h2 <=23 && m2 >=0 && m2 <=59) {
+	                            	sTimeOn  = String.format("%02d", h1) + ":" + String.format("%02d", m1);
+	                            	sTimeOff = String.format("%02d", h2) + ":" + String.format("%02d", m2);
+                            	}
+                    			switch (nButton) {
+                    			case 1:
+                                    tvButton = (TextView) findViewById(R.id.button1on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button1off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 2:
+                                    tvButton = (TextView) findViewById(R.id.button2on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button2off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 3:
+                                    tvButton = (TextView) findViewById(R.id.button3on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button3off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 4:
+                                    tvButton = (TextView) findViewById(R.id.button4on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button4off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 5:
+                                    tvButton = (TextView) findViewById(R.id.button5on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button5off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			case 6:
+                                    tvButton = (TextView) findViewById(R.id.button6on);
+                                    tvButton.setText(sTimeOn);
+                                    tvButton = (TextView) findViewById(R.id.button6off);
+                                    tvButton.setText(sTimeOff);
+                                    break;
+                    			}
+                    		}
+
+                    		if(parts[0].equals("Status")) {
+                    			ToggleButton tButton;
+                            	for(int i = 0; i < Math.min(6, parts.length+1); i++) {
+                            		int s = Integer.parseInt(parts[i+1].trim());
+                            		switch (i) {
+                            		case 5:
+                                        tButton = (ToggleButton) findViewById(R.id.toggleButton6);
+                                        tButton.setChecked(s == 1);
+                            			break;
+                            		}
+                            	}
+                    		}
+                    		
+                    	}
+                    }
+        			String sLine = readMessageBuffer.substring(Math.min(nLineAt+1, readMessageBuffer.length()));
+        			readMessageBuffer = sLine;
+        		}
                 mConversationArrayAdapter.add(readMessage);
                 break;
             case MESSAGE_DEVICE_NAME:
