@@ -430,8 +430,10 @@ public class BluetoothChat extends Activity {
 	                            	int m2 = Integer.parseInt(parts[5].trim());
 	                            	String sTimeOn = "";
 	                            	String sTimeOff = "";
-	                            	if(h1 >= 0 && h1 <=23 && m1 >=0 && m1 <=59 && h2 >= 0 && h2 <=23 && m2 >=0 && m2 <=59) {
+	                            	if(h1 >= 0 && h1 <=23 && m1 >=0 && m1 <=59) {
 		                            	sTimeOn  = String.format("%02d", h1) + ":" + String.format("%02d", m1);
+	                            	}
+	                            	if(h2 >= 0 && h2 <=23 && m2 >=0 && m2 <=59) {
 		                            	sTimeOff = String.format("%02d", h2) + ":" + String.format("%02d", m2);
 	                            	}
 	                    			switch (nButton) {
