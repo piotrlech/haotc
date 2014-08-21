@@ -88,21 +88,23 @@ void loop()
       Alarm.delay(5);
       if (c == END_CMD_CHAR) { // if the complete string has been read
         if (pin_num == 0 && pin_value == 0) {
-          Serial.println("Disabling alarms");
+          //Serial.println("Disabling alarms");
           for (int i = 0; i < 24; i++) {
             EEPROM.write(i, 255);
             Alarm.free(i);
           }
+          //Serial.flush();
         }
         else if (pin_num == 0 && pin_value == 1) {
-          Serial.print("Enabling alarms at ");
-          digitalClockDisplay();
+          //Serial.println("Enabling alarms");
+          //digitalClockDisplay();
+          //Serial.flush();
           setUpAlarms();
         }
         else {
-          String sDisp = "pin_num = ";
-          sDisp = sDisp + pin_num + ", pin_value = " + pin_value;
-          Serial.println(sDisp);
+          //String sDisp = "pin_num = ";
+          //sDisp = sDisp + pin_num + ", pin_value = " + pin_value;
+          //Serial.println(sDisp);
         }
         break;
       }              
@@ -185,7 +187,7 @@ void loop()
     int h = Serial.parseInt();
     int m = Serial.parseInt();
     int s = Serial.parseInt();
-    String sDebug = "Time set to ";
+    String sDebug = "Enabling alarms at ";
     sDebug = sDebug + y + "." + mo + "." + d + " " + h + ":" + m + ":" + s;
     //Serial.println(sDebug);
     tmElements_t tm;
@@ -199,6 +201,7 @@ void loop()
     if (RTC.write(tm)) {
       Serial.println(sDebug);
     }
+    Serial.flush();
     return;  // Done. return to loop();
   }
 }
@@ -314,15 +317,15 @@ void setUpAlarms()
       case 6:
         Alarm.alarmRepeat(h, m, 0, offAlarm6);
         int iRes = Alarm.alarmRepeat(h, m, 1, offAlarm6);
-        String sRes = "iRes = ";
-        sRes = sRes + iRes;
-        Serial.println(sRes);
+        //String sRes = "iRes = ";
+        //sRes = sRes + iRes;
+        //Serial.println(sRes);
         break;
       }
     }
    //Serial.println();
   }
-  //Serial.flush();
+  Serial.flush();
 }
 
 void onAlarm1(){
@@ -538,7 +541,7 @@ void digitalClockDisplay()
   Serial.print(hour());
   printDigits(minute());
   printDigits(second());
-  Serial.println(); 
+  Serial.println();
 }
 
 void printDigits(int digits)

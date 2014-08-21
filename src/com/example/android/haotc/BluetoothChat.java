@@ -414,6 +414,7 @@ public class BluetoothChat extends Activity {
         			String fLine = readMessageBuffer.substring(0, Math.max(0, nLineAt-1));
         			//Log.w(TAG, "SEND IT OUT = " + fLine);
                     if(fLine.length() > 0) {
+                        mConversationArrayAdapter.add(fLine);
                     	String[] parts = fLine.split(",|:|#");
                     	if(parts != null && parts.length > 1) {
                     		String outcome = "--" + fLine + "--";
@@ -517,7 +518,7 @@ public class BluetoothChat extends Activity {
         			String sLine = readMessageBuffer.substring(Math.min(nLineAt+1, readMessageBuffer.length()));
         			readMessageBuffer = sLine;
         		}
-                mConversationArrayAdapter.add(readMessage);
+                //mConversationArrayAdapter.add(readMessage);
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name
