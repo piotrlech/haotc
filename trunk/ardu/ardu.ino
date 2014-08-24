@@ -148,13 +148,7 @@ void loop()
     // analogWrite(  pin_num, pin_value );
     int timeout = 50;
     int sec = Serial.parseInt();
-	String sOut;
-    sOut = "Time:";
-	sOut = sOut + pin_num + ",";
-    sOut = sOut + pin_value + ",";
-    sOut = sOut + sec;
-    Serial.println(sOut);
-    Alarm.delay(timeout);
+    String sOut;
     for(int i = 0; i < 6; i++) {
       sOut = "Schedule:";
       sOut = sOut + (i+1) + ":";
@@ -172,6 +166,13 @@ void loop()
       sOut = sOut + EEPROM.read(i) + ",";
       //Serial.print(",");
     }
+    Serial.println(sOut);
+    Alarm.delay(timeout);
+    sOut = "Arduino time is:";
+    sOut = sOut + hour() + ":" + minute() + ":" + second() + " vs Android ";
+    sOut = sOut + pin_num + ":";
+    sOut = sOut + pin_value + ":";
+    sOut = sOut + sec;
     Serial.println(sOut);
     Alarm.delay(timeout);
     return;  // Done. return to loop();
