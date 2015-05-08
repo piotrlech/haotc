@@ -1,0 +1,117 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* Android.mk
+* _classpath
+* _index.html
+* _project
+* ardu\
+* ardu\DS1307RTC.zip
+* ardu\DS1307RTC\
+* ardu\DS1307RTC\DS1307RTC.cpp
+* ardu\DS1307RTC\DS1307RTC.h
+* ardu\DS1307RTC\examples\
+* ardu\DS1307RTC\examples\ReadTest\
+* ardu\DS1307RTC\examples\ReadTest\ReadTest.ino
+* ardu\DS1307RTC\examples\SetTime\
+* ardu\DS1307RTC\examples\SetTime\SetTime.ino
+* ardu\DS1307RTC\keywords.txt
+* ardu\DS1307RTC\readme.txt
+* ardu\RCSwitch.zip
+* ardu\RCSwitch\
+* ardu\RCSwitch\RCSwitch.cpp
+* ardu\RCSwitch\RCSwitch.h
+* ardu\RCSwitch\examples\
+* ardu\RCSwitch\examples\ReceiveDemo_Advanced\
+* ardu\RCSwitch\examples\ReceiveDemo_Advanced\ReceiveDemo_Advanced.pde
+* ardu\RCSwitch\examples\ReceiveDemo_Advanced\helperfunctions.ino
+* ardu\RCSwitch\examples\ReceiveDemo_Advanced\output.ino
+* ardu\RCSwitch\examples\ReceiveDemo_Simple\
+* ardu\RCSwitch\examples\ReceiveDemo_Simple\ReceiveDemo_Simple.pde
+* ardu\RCSwitch\examples\SendDemo\
+* ardu\RCSwitch\examples\SendDemo\SendDemo.pde
+* ardu\RCSwitch\examples\TypeA_WithDIPSwitches\
+* ardu\RCSwitch\examples\TypeA_WithDIPSwitches\TypeA_WithDIPSwitches.pde
+* ardu\RCSwitch\examples\TypeA_WithDIPSwitches_Lightweight\
+* ardu\RCSwitch\examples\TypeA_WithDIPSwitches_Lightweight\TypeA_WithDIPSwitches_Lightweight.ino
+* ardu\RCSwitch\examples\TypeB_WithRotaryOrSlidingSwitches\
+* ardu\RCSwitch\examples\TypeB_WithRotaryOrSlidingSwitches\TypeB_WithRotaryOrSlidingSwitches.pde
+* ardu\RCSwitch\examples\TypeC_Intertechno\
+* ardu\RCSwitch\examples\TypeC_Intertechno\TypeC_Intertechno.pde
+* ardu\RCSwitch\examples\TypeD_REV\
+* ardu\RCSwitch\examples\TypeD_REV\TypeD_REV.ino
+* ardu\RCSwitch\examples\Webserver\
+* ardu\RCSwitch\examples\Webserver\Webserver.pde
+* ardu\RCSwitch\keywords.txt
+* ardu\Time.zip
+* ardu\TimeAlarms.zip
+* ardu\TimeAlarms\
+* ardu\TimeAlarms\TimeAlarms.cpp
+* ardu\TimeAlarms\TimeAlarms.h
+* ardu\TimeAlarms\examples\
+* ardu\TimeAlarms\examples\TimeAlarmExample\
+* ardu\TimeAlarms\examples\TimeAlarmExample\TimeAlarmExample.pde
+* ardu\TimeAlarms\keywords.txt
+* ardu\TimeAlarms\readme.txt
+* ardu\Time\
+* ardu\Time\DateStrings.cpp
+* ardu\Time\Readme.txt
+* ardu\Time\Time.cpp
+* ardu\Time\Time.h
+* ardu\Time\examples\
+* ardu\Time\examples\Processing\
+* ardu\Time\examples\Processing\SyncArduinoClock\
+* ardu\Time\examples\Processing\SyncArduinoClock\SyncArduinoClock.pde
+* ardu\Time\examples\Processing\SyncArduinoClock\readme.txt
+* ardu\Time\examples\TimeArduinoDue\
+* ardu\Time\examples\TimeArduinoDue\TimeArduinoDue.ino
+* ardu\Time\examples\TimeGPS\
+* ardu\Time\examples\TimeGPS\TimeGPS.ino
+* ardu\Time\examples\TimeNTP\
+* ardu\Time\examples\TimeNTP\TimeNTP.ino
+* ardu\Time\examples\TimeRTCLog\
+* ardu\Time\examples\TimeRTCLog\TimeRTCLog.pde
+* ardu\Time\examples\TimeRTCSet\
+* ardu\Time\examples\TimeRTCSet\TimeRTCSet.ino
+* ardu\Time\examples\TimeRTC\
+* ardu\Time\examples\TimeRTC\TimeRTC.pde
+* ardu\Time\examples\TimeSerialDateStrings\
+* ardu\Time\examples\TimeSerialDateStrings\TimeSerialDateStrings.ino
+* ardu\Time\examples\TimeSerial\
+* ardu\Time\examples\TimeSerial\TimeSerial.ino
+* ardu\Time\examples\TimeTeensy3\
+* ardu\Time\examples\TimeTeensy3\TimeTeensy3.ino
+* ardu\Time\keywords.txt
+* ardu\ardu.ino
+* svn.exe.stackdump
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
