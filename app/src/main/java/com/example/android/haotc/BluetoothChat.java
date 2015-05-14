@@ -19,6 +19,7 @@ package com.example.android.haotc;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.zip.CRC32;
 
 import com.example.android.haotc.R;
 
@@ -351,6 +352,11 @@ public class BluetoothChat extends Activity {
 
         // Check that there's actually something to send
         if (message.length() > 0) {
+            // crc32
+            CRC32 crc = new CRC32();
+            crc.update(message.getBytes());
+            Log.e(TAG, Long.toHexString(crc.getValue()));
+
             // Get the message bytes and tell the BluetoothChatService to write
             byte[] send = message.getBytes();
             mChatService.write(send);
