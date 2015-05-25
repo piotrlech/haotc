@@ -8,3 +8,17 @@ The goal was to control a power socket with an Android phone. The cheapest optio
 For now, the application can switch the power on and off on demand, and at the given time on everyday basis. The source code is available here and naturally can be adapted to some other needs as another schedule, or to additional sensors of rain or daylight for example.
 
 Automatically exported from https://code.google.com/p/haotc/
+
+# List of materials
+
+Arduino - 50 PLN
+Real Time Clock DS1307 - 10 PLN
+433MHz Transmitter - 9 PLN
+Bluetooth HC05 - 27 PLN
+TOTAL - 96 PLN (32 USD)
+
+Diagram:
+![diag](http://haotc.googlecode.com/svn/wiki/images/ardu_bb.png)
+
+Photo:
+![photo](http://haotc.googlecode.com/svn/wiki/images/IMG_20140816_122154.jpg)
