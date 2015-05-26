@@ -11,11 +11,11 @@ Automatically exported from https://code.google.com/p/haotc/
 
 # List of materials
 
-- Arduino - 50 PLN
-- Real Time Clock DS1307 - 10 PLN
-- 433MHz Transmitter - 9 PLN
-- Bluetooth HC05 - 27 PLN
-**- TOTAL - 96 PLN (32 USD)**
+* Arduino - 50 PLN
+* Real Time Clock DS1307 - 10 PLN
+* 433MHz Transmitter - 9 PLN
+* Bluetooth HC05 - 27 PLN
+* __TOTAL - 96 PLN (32 USD)__
 
 Diagram:
 
