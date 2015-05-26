@@ -17,10 +17,10 @@ Automatically exported from https://code.google.com/p/haotc/
 * Bluetooth HC05 - 27 PLN
 * __TOTAL - 96 PLN (32 USD)__
 
-Diagram:
+The diagram:
 
 ![diag](http://haotc.googlecode.com/svn/wiki/images/ardu_bb.png)
 
-And photo:
+And a photo:
 
 ![photo](http://haotc.googlecode.com/svn/wiki/images/IMG_20140816_122154.jpg)
