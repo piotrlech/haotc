@@ -10,24 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89b210e5-0748-482c-8fd2-d49cdc9ae685" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$10.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/haotc/BluetoothChat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/BluetoothChat.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/BluetoothChat.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -60,19 +42,10 @@
       <file leaf-file-name="BluetoothChat.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/BluetoothChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55197656">
-              <caret line="355" column="0" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6565978">
+              <caret line="303" column="73" selection-start-line="303" selection-start-column="73" selection-end-line="303" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#13252#13274#0" expanded="true" />
-                <element signature="e#14095#14601#0" expanded="true" />
-                <element signature="e#14600#14601#0" expanded="true" />
-                <element signature="e#14717#23541#0" expanded="true" />
-                <element signature="e#15072#15099#0" expanded="true" />
-                <element signature="e#15491#15516#0" expanded="true" />
-                <element signature="e#15691#15719#0" expanded="true" />
-                <element signature="e#23540#23541#0" expanded="true" />
-                <element signature="e#24745#24776#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,7 +74,7 @@
       <file leaf-file-name="main.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.586207">
+            <state vertical-scroll-proportion="0.0">
               <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
@@ -928,7 +901,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -946,70 +919,12 @@
               <option name="myItemId" value="haotc" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="haotc" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="haotc" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="haotc" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="haotc" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1235,7 +1150,6 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924527" sideWeight="0.49779493" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1244,8 +1158,8 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924527" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924527" sideWeight="0.49558985" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924527" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924527" sideWeight="0.49558985" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924527" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1256,6 +1170,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924527" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1278,6 +1193,80 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/BluetoothChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/BluetoothChatService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="81" selection-start-line="64" selection-start-column="79" selection-end-line="64" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/DeviceListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/BluetoothChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="355" column="0" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/BluetoothChatService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="81" selection-start-line="64" selection-start-column="79" selection-end-line="64" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/DeviceListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1290,7 +1279,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,15 +1288,6 @@
           <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1343,15 +1322,6 @@
           <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1386,15 +1356,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1429,15 +1390,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1472,15 +1424,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1515,15 +1458,6 @@
           <caret line="133" column="21" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1550,15 +1484,6 @@
           <caret line="114" column="12" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1577,15 +1502,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1632,13 +1548,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22401172">
           <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.586207">
+        <state vertical-scroll-proportion="0.0">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
@@ -1649,19 +1564,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/haotc/BluetoothChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55197656">
-          <caret line="355" column="0" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6565978">
+          <caret line="303" column="73" selection-start-line="303" selection-start-column="73" selection-end-line="303" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13252#13274#0" expanded="true" />
-            <element signature="e#14095#14601#0" expanded="true" />
-            <element signature="e#14600#14601#0" expanded="true" />
-            <element signature="e#14717#23541#0" expanded="true" />
-            <element signature="e#15072#15099#0" expanded="true" />
-            <element signature="e#15491#15516#0" expanded="true" />
-            <element signature="e#15691#15719#0" expanded="true" />
-            <element signature="e#23540#23541#0" expanded="true" />
-            <element signature="e#24745#24776#0" expanded="true" />
           </folding>
         </state>
       </provider>

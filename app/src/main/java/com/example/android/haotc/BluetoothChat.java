@@ -291,7 +291,7 @@ public class BluetoothChat extends Activity {
         try {
         	Date mDate = (Date)formatter.parse(sTime);
         	String sFormatted = formatter.format(mDate);
-            String message = "*12," + buttonNr + ",3," + sFormatted + "#";
+            String message = "*12," + buttonNr + ",3," + sFormatted + "," + buttonNr  + "###";
             Log.i(TAG, message);
             sendMessage(message);
 		} catch (ParseException e) {
@@ -301,12 +301,12 @@ public class BluetoothChat extends Activity {
         try {
         	Date mDate = (Date)formatter.parse(sTime);
         	String sFormatted = formatter.format(mDate);
-            String message = "*12," + buttonNr + ",2," + sFormatted + "#";
+            String message = "*12," + buttonNr + ",2," + sFormatted + "," + buttonNr  + "###";
             Log.v(TAG, message);
             sendMessage(message);
 		} catch (ParseException e) {
 		}
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
     }
         
     @Override

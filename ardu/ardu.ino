@@ -112,15 +112,28 @@ void loop()
         if (pin_num >= 1 && pin_num <= 6) {
           int h = Serial.parseInt();
           int m = Serial.parseInt();
-          eeprom_addr = 4 * (pin_num-1);
-          if (pin_value == PIN_LOW)
-            eeprom_addr = eeprom_addr + 2;
-          else if (pin_value == PIN_HIGH)
-            eeprom_addr = eeprom_addr + 0;
-          else
-	    return; // error in pin value. return.
-          EEPROM.write(eeprom_addr, h);
-          EEPROM.write(eeprom_addr+1, m);
+          int p = Serial.parseInt();
+          if(pin_num == p) {
+            eeprom_addr = 4 * (pin_num-1);
+            if (pin_value == PIN_LOW)
+              eeprom_addr = eeprom_addr + 2;
+            else if (pin_value == PIN_HIGH)
+              eeprom_addr = eeprom_addr + 0;
+            else
+	          return; // error in pin value. return.
+            if(h >=0 && h <= 23)
+              EEPROM.write(eeprom_addr, h);
+            if(m >= 0 && m <= 59)
+              EEPROM.write(eeprom_addr+1, m);
+          }
+          else {
+            String sOut;
+            sOut = "pins error:";
+            sOut = sOut + pin_num;
+            sOut = sOut + " vs ";
+            sOut = sOut + p;
+            Serial.println(sOut);           
+          }
           Alarm.delay(5);
         }
       }
