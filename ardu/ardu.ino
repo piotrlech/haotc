@@ -64,7 +64,7 @@ void setup() {
   Serial.flush();
   // Transmitter is connected to Arduino Pin #10  
   mySwitch.enableTransmit(10);
-  setUpStatus();
+  //setUpStatus();
   setUpAlarms();  // enable when setup after power on required
 }
 
