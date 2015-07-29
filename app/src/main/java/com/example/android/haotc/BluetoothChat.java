@@ -53,7 +53,7 @@ import android.widget.ToggleButton;
 public class BluetoothChat extends Activity {
     // Debugging
     private static final String TAG = "BluetoothChat";
-    private static final boolean D = true;
+    private static final boolean D = false;
     private static final boolean BtAvailable = true;
 
     // Message types sent from the BluetoothChatService Handler
@@ -155,18 +155,6 @@ public class BluetoothChat extends Activity {
                     setupChat();
                 if (mChatService != null) {
                     mChatService.connect(device);
-                    /*long ms = SystemClock.uptimeMillis();
-                    while (mChatService.getState() != BluetoothChatService.STATE_CONNECTED && SystemClock.uptimeMillis()-ms < 1000)
-                        ;
-                    if (mChatService.getState() == BluetoothChatService.STATE_CONNECTED) {
-                        SimpleDateFormat formatter = new SimpleDateFormat("HH,mm,ss");
-                        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                        Date date = new Date();
-                        //System.out.println(formatter.format(date));
-                        String message = "*11," + formatter.format(date) + "#";
-                        Log.d(TAG, message);
-                        sendMessage(message);
-                    }*/
                 }
             }
         }
@@ -185,6 +173,13 @@ public class BluetoothChat extends Activity {
             if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
               // Start the Bluetooth chat services
               mChatService.start();
+            }
+            long ms = SystemClock.uptimeMillis();
+            while (mChatService.getState() != BluetoothChatService.STATE_CONNECTED && SystemClock.uptimeMillis()-ms < 1000)
+                ;
+            if (mChatService.getState() == BluetoothChatService.STATE_CONNECTED) {
+                mReadButton = (Button) findViewById(R.id.button_read);
+                mReadButton.performClick();
             }
         }
     }
@@ -584,17 +579,7 @@ public class BluetoothChat extends Activity {
         switch (requestCode) {
             case REQUEST_CONNECT_INIT:
                 if(D) Log.w(TAG, "*** REQUEST_CONNECT_INIT ***");
-                /*/ Connect on startup (piotr)
-                if (resultCode == Activity.RESULT_OK) {
-                    // Get the address
-                    SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-                    String address = sharedPref.getString("address", "");
-                    // Get the BLuetoothDevice object
-                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-                    // Attempt to connect to the device
-                    mChatService.connect(device);
-                }
-                // When DeviceListActivity returns with a device to connect*/
+                // Connect on startup (piotr)
                 if (resultCode == Activity.RESULT_OK) {
                     // Get the device MAC address
                     String address = data.getExtras()
