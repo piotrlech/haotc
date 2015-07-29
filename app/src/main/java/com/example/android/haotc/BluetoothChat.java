@@ -21,8 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.zip.CRC32;
 
-import com.example.android.haotc.R;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -56,7 +54,7 @@ public class BluetoothChat extends Activity {
     // Debugging
     private static final String TAG = "BluetoothChat";
     private static final boolean D = true;
-    private static final boolean BA = true;
+    private static final boolean BtAvailable = true;
 
     // Message types sent from the BluetoothChatService Handler
     public static final int MESSAGE_STATE_CHANGE = 1;
@@ -72,6 +70,7 @@ public class BluetoothChat extends Activity {
     // Intent request codes
     private static final int REQUEST_CONNECT_DEVICE = 1;
     private static final int REQUEST_ENABLE_BT = 2;
+    private static final int REQUEST_CONNECT_INIT = 3;
 
     // Layout Views
     private TextView mTitle;
@@ -113,7 +112,7 @@ public class BluetoothChat extends Activity {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // If the adapter is null, then Bluetooth is not supported
-        if (BA && mBluetoothAdapter == null) {
+        if (BtAvailable && mBluetoothAdapter == null) {
             Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
             finish();
             return;
@@ -128,17 +127,47 @@ public class BluetoothChat extends Activity {
 
         // If BT is not on, request that it be enabled.
         // setupChat() will then be called during onActivityResult
-        if(BA) {
+        if(BtAvailable) {
             if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
                 // Otherwise, setup the chat session
             } else {
-                // piotr - Launch the DeviceListActivity to see devices and do scan
+                /*/ piotr - Launch the DeviceListActivity to see devices and do scan
                 Intent serverIntent = new Intent(this, DeviceListActivity.class);
-                startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-                // ~piotr
-                if (mChatService == null) setupChat();
+                startActivityForResult(serverIntent, REQUEST_CONNECT_INIT);
+                // ~piotr*/
+                // Connect on startup (piotr)
+                // java.lang.RuntimeException: Unable to start activity ComponentInfo{com.example.android.haotc/com.example.android.haotc.BluetoothChat}:
+                // java.lang.NullPointerException: Attempt to invoke virtual method 'void com.example.android.haotc.BluetoothChatService.connect(android.bluetooth.BluetoothDevice)'
+                // on a null object reference
+                //if (resultCode == Activity.RESULT_OK) {
+                    // Get the address
+                    SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                    String address = sharedPref.getString("address", "");
+                    // Get the BLuetoothDevice object
+                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+                    // Attempt to connect to the device
+                if(D) Log.e(TAG, "stored address: " + address);
+                //}
+                // When DeviceListActivity returns with a device to connect*/
+                if (mChatService == null)
+                    setupChat();
+                if (mChatService != null) {
+                    mChatService.connect(device);
+                    /*long ms = SystemClock.uptimeMillis();
+                    while (mChatService.getState() != BluetoothChatService.STATE_CONNECTED && SystemClock.uptimeMillis()-ms < 1000)
+                        ;
+                    if (mChatService.getState() == BluetoothChatService.STATE_CONNECTED) {
+                        SimpleDateFormat formatter = new SimpleDateFormat("HH,mm,ss");
+                        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                        Date date = new Date();
+                        //System.out.println(formatter.format(date));
+                        String message = "*11," + formatter.format(date) + "#";
+                        Log.d(TAG, message);
+                        sendMessage(message);
+                    }*/
+                }
             }
         }
     }
@@ -551,26 +580,54 @@ public class BluetoothChat extends Activity {
     };
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(D) Log.d(TAG, "onActivityResult " + resultCode);
+        if(D) Log.w(TAG, "onActivityResult " + resultCode);
         switch (requestCode) {
-        case REQUEST_CONNECT_DEVICE:
-            // When DeviceListActivity returns with a device to connect
-            if (resultCode == Activity.RESULT_OK) {
-                // Get the device MAC address
-                String address = data.getExtras()
-                                     .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                // Store the address
-                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-                String preAddress = sharedPref.getString("address", "");
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("address", address);
-                editor.commit();
-                // Get the BLuetoothDevice object
-                BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-                // Attempt to connect to the device
-                mChatService.connect(device);
-            }
-            break;
+            case REQUEST_CONNECT_INIT:
+                if(D) Log.w(TAG, "*** REQUEST_CONNECT_INIT ***");
+                /*/ Connect on startup (piotr)
+                if (resultCode == Activity.RESULT_OK) {
+                    // Get the address
+                    SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                    String address = sharedPref.getString("address", "");
+                    // Get the BLuetoothDevice object
+                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+                    // Attempt to connect to the device
+                    mChatService.connect(device);
+                }
+                // When DeviceListActivity returns with a device to connect*/
+                if (resultCode == Activity.RESULT_OK) {
+                    // Get the device MAC address
+                    String address = data.getExtras()
+                            .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+                    // Store the address
+                    SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("address", address);
+                    editor.commit();
+                    // Get the BLuetoothDevice object
+                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+                    // Attempt to connect to the device
+                    mChatService.connect(device);
+                }
+                break;
+            case REQUEST_CONNECT_DEVICE:
+                if(D) Log.w(TAG, "*** REQUEST_CONNECT_DEVICE ***");
+                // When DeviceListActivity returns with a device to connect
+                if (resultCode == Activity.RESULT_OK) {
+                    // Get the device MAC address
+                    String address = data.getExtras()
+                            .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+                    // Store the address
+                    SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("address", address);
+                    editor.commit();
+                    // Get the BLuetoothDevice object
+                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+                    // Attempt to connect to the device
+                    mChatService.connect(device);
+                }
+                break;
         case REQUEST_ENABLE_BT:
             // When the request to enable Bluetooth returns
             if (resultCode == Activity.RESULT_OK) {
