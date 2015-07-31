@@ -16,11 +16,6 @@
 
 package com.example.android.haotc;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.zip.CRC32;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -37,8 +32,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,13 +42,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.zip.CRC32;
+
 /**
  * This is the main Activity that displays the current chat session.
  */
 public class BluetoothChat extends Activity {
     // Debugging
     private static final String TAG = "BluetoothChat";
-    private static final boolean D = false;
+    private static final boolean D = true;
     private static final boolean BtAvailable = true;
 
     // Message types sent from the BluetoothChatService Handler
@@ -92,6 +95,7 @@ public class BluetoothChat extends Activity {
     // Member object for the chat services
     private BluetoothChatService mChatService = null;
 
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -125,6 +129,24 @@ public class BluetoothChat extends Activity {
         super.onStart();
         if(D) Log.e(TAG, "++ ON START ++");
 
+        //super.onCreate(savedInstanceState);
+        //scheduleTaskExecutor= Executors.newScheduledThreadPool(5);
+
+        // This schedule a task to run every 10 minutes:
+        scheduler.scheduleAtFixedRate(new Runnable() {
+            public void run() {
+                mReadButton = (Button) findViewById(R.id.button_read);
+                mReadButton.performClick();
+                // If you need update UI, simply do this:
+                //runOnUiThread(new Runnable() {
+                //    public void run() {
+                //        // update your UI component here.
+                //        myTextView.setText("refreshed");
+                //    }
+                //});
+            }
+        }, 2, 60, TimeUnit.SECONDS);
+
         // If BT is not on, request that it be enabled.
         // setupChat() will then be called during onActivityResult
         if(BtAvailable) {
@@ -133,28 +155,16 @@ public class BluetoothChat extends Activity {
                 startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
                 // Otherwise, setup the chat session
             } else {
-                /*/ piotr - Launch the DeviceListActivity to see devices and do scan
-                Intent serverIntent = new Intent(this, DeviceListActivity.class);
-                startActivityForResult(serverIntent, REQUEST_CONNECT_INIT);
-                // ~piotr*/
-                // Connect on startup (piotr)
-                // java.lang.RuntimeException: Unable to start activity ComponentInfo{com.example.android.haotc/com.example.android.haotc.BluetoothChat}:
-                // java.lang.NullPointerException: Attempt to invoke virtual method 'void com.example.android.haotc.BluetoothChatService.connect(android.bluetooth.BluetoothDevice)'
-                // on a null object reference
-                //if (resultCode == Activity.RESULT_OK) {
-                    // Get the address
-                    SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-                    String address = sharedPref.getString("address", "");
-                    // Get the BLuetoothDevice object
-                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+                // Get the address
+                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                String address = sharedPref.getString("address", "");
+                // Get the BLuetoothDevice object
+                BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+                if (D) Log.e(TAG, "stored address: " + address);
+                if (address.length() > 15) {
                     // Attempt to connect to the device
-                if(D) Log.e(TAG, "stored address: " + address);
-                //}
-                // When DeviceListActivity returns with a device to connect*/
-                if (mChatService == null)
-                    setupChat();
-                if (mChatService != null) {
-                    mChatService.connect(device);
+                    if (mChatService == null) setupChat();
+                    if (mChatService != null) mChatService.connect(device);
                 }
             }
         }
@@ -174,6 +184,18 @@ public class BluetoothChat extends Activity {
               // Start the Bluetooth chat services
               mChatService.start();
             }
+            /*/ piotr - scheduler
+            public void beepForAnHour() {
+            final Runnable beeper = new Runnable() {
+                public void run() { System.out.println("beep");
+                };
+                final ScheduledFuture beeperHandle =
+                        scheduler.scheduleAtFixedRate(beeper, 10, 10, SECONDS);
+                scheduler.schedule(new Runnable() {
+                    public void run() { beeperHandle.cancel(true); }
+                }, 60 * 60, SECONDS);
+            }
+            // another attempt
             long ms = SystemClock.uptimeMillis();
             while (mChatService.getState() != BluetoothChatService.STATE_CONNECTED && SystemClock.uptimeMillis()-ms < 1000)
                 ;
@@ -181,8 +203,10 @@ public class BluetoothChat extends Activity {
                 mReadButton = (Button) findViewById(R.id.button_read);
                 mReadButton.performClick();
             }
+            // ~piotr */
         }
     }
+
 
     private void setupChat() {
         Log.d(TAG, "setupChat()");
