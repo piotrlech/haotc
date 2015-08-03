@@ -56,7 +56,7 @@ import java.util.zip.CRC32;
 public class BluetoothChat extends Activity {
     // Debugging
     private static final String TAG = "BluetoothChat";
-    private static final boolean D = true;
+    private static final boolean D = false;
     private static final boolean BtAvailable = true;
 
     // Message types sent from the BluetoothChatService Handler
@@ -135,8 +135,18 @@ public class BluetoothChat extends Activity {
         // This schedule a task to run every 10 minutes:
         scheduler.scheduleAtFixedRate(new Runnable() {
             public void run() {
-                mReadButton = (Button) findViewById(R.id.button_read);
-                mReadButton.performClick();
+                if (D) Log.e(TAG, "*** scheduled job ***");
+                SimpleDateFormat formatter = new SimpleDateFormat("HH,mm,ss");
+                //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                //System.out.println(formatter.format(date));
+                String message = "*11," + formatter.format(date) + "#";
+                if (D) Log.e(TAG, message);
+                sendMessage(message);
+                //sendTriggers(1, R.id.button1on, R.id.button1off);
+
+                //mReadButton = (Button) findViewById(R.id.button_read);
+                //mReadButton.performClick();
                 // If you need update UI, simply do this:
                 //runOnUiThread(new Runnable() {
                 //    public void run() {
@@ -147,6 +157,7 @@ public class BluetoothChat extends Activity {
             }
         }, 2, 60, TimeUnit.SECONDS);
 
+        if(D) Log.e(TAG, "+++ ON START +++");
         // If BT is not on, request that it be enabled.
         // setupChat() will then be called during onActivityResult
         if(BtAvailable) {
@@ -159,9 +170,9 @@ public class BluetoothChat extends Activity {
                 SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
                 String address = sharedPref.getString("address", "");
                 // Get the BLuetoothDevice object
-                BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                 if (D) Log.e(TAG, "stored address: " + address);
                 if (address.length() > 15) {
+                    BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                     // Attempt to connect to the device
                     if (mChatService == null) setupChat();
                     if (mChatService != null) mChatService.connect(device);
@@ -373,6 +384,7 @@ public class BluetoothChat extends Activity {
     public void onStop() {
         super.onStop();
         if(D) Log.e(TAG, "-- ON STOP --");
+        scheduler.shutdownNow();
     }
 
     @Override
