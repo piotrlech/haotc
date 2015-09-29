@@ -24,3 +24,5 @@ The diagram:
 And a photo:
 
 ![photo](http://haotc.googlecode.com/svn/wiki/images/IMG_20140816_122154.jpg)
+
+In the neighbour repository of mine, there is yet another Android client, which reaches Arduino over the Internet and HMAC-SHA256.
